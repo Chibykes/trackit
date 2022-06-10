@@ -43,7 +43,6 @@ const Dashboard = (props) => {
                 return navigate('/?status=error&msg=Session expired');
             }
 
-            console.log(data);
             setTrxs(data);
             setUser(user);
             if(specificTrx.length > 0) setDailyVolume(specificTrx);
