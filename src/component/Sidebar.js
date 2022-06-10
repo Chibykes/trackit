@@ -18,7 +18,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
         <>
             <div className={`
                 py-5 bg-white lg:sticky top-0 h-screen overflow-hidden
-                fixed lg:shadow-none shadow-xl z-10
+                fixed print:hidden lg:shadow-none shadow-xl z-10
                 ${showSidebar ? 'lg:w-2/6 w-full left-0' : 'lg:w-0 lg:opacity-0 -left-full'}
             `} style={{ transition: 'width .5s, left .5s' }}>
                 <div className="pb-5 h-1/4 lg:h-1/5 relative grid place-content-center">
