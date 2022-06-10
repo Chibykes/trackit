@@ -13,10 +13,9 @@ const Scan = () => {
                     delay={300}
                     onError={(err) => console.log(err)}
                     onScan={(data) => data && navigate('/trx/'+data)}
+                    facingMode={isMobile ? 'environment' : 'user'}
                     className="fixed w-full h-full flex justify-center items-center"
                     style={{ transform: 'rotateY(180deg)' }}
-                    constraints={{facingMode: isMobile ? 'environment' : 'user'}}
-                    facingmode={isMobile ? 'environment' : 'user'}
                 />
             </div>
         </>
