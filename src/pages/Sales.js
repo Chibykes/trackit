@@ -37,8 +37,8 @@ const Sales = () => {
 
         setFormData({
             ...formData,
+            balance,
             [e.target.name]: e.target.value,
-            balance
         })
     }
 
@@ -169,10 +169,10 @@ const Sales = () => {
                             <label className="text-xs font-bold block pb-2">
                                 Amount Upaid (How much customer owes)
                             </label>
-                            <input type="number" name="balance" placeholder="Amount customer is yet to pay" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                            <input type="number" name="balance" placeholder="Amount customer is yet to pay"     className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
                                 onChange={handleFormData}
                                 value={formData.balance}
-                                />
+                            />
                         </div>
 
 

@@ -29,7 +29,7 @@ const Dashboard = (props) => {
     useEffect(() => {
         setLoadSplash(true);
             
-        fetch(`${url}/trx?limit=5&date=1`, {
+        fetch(`${url}/trx?limit=5&date=0`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json'

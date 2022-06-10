@@ -13,6 +13,7 @@ const Transactions = () => {
     const { url, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
     const [showSidebar, setShowSidebar] = useState(false);
     const [transactions, setTransactions] = useState([]);
+    const [transactionsLoading, setTransactionsLoading] = useState(true);
     const [limit, setLimit] = useState('10');
     const [input, setInput] = useState('');
     const [order, setOrder] = useState('desc');
@@ -22,6 +23,7 @@ const Transactions = () => {
     
     const searchTrx = (e) => {
         e && e.preventDefault();
+        setTransactionsLoading(true);
 
         const query = input ? {
             $or: [
@@ -45,6 +47,7 @@ const Transactions = () => {
                 return setTransactions(data.reverse());
             }
             setTransactions(data);
+            setTransactionsLoading(false);
         })
         .catch(err => {
             setLoadSplash(false);
@@ -128,16 +131,25 @@ const Transactions = () => {
                         
 
                         {/* <h1 className="font-bold">Transactions</h1> */}
-                        <div className="pt-3 relative"> {
-                            transactions.length > 0 ? 
-                            transactions.map(trx => <Trx {...trx} key={trx.id}/>) :
-                            <div className="grid place-content-center py-16">
-                                <AiOutlineFileSearch className="text-black text-3xl text-center w-full" />
-                                <p className="text-black text-center text-xs font-bold pt-3">
-                                    No Transaction <br/> Found
-                                </p>
-                            </div>
-                        } </div>
+                        <div className="pt-3 relative">
+                            {transactions.length > 0 && transactions.map(trx => <Trx {...trx} key={trx.id}/>)}
+
+                            {transactions.length <= 0 &&
+                                <div className="grid place-content-center py-16">
+                                    <AiOutlineFileSearch className="text-black text-3xl text-center w-full" />
+                                    <p className="text-black text-center text-xs font-bold pt-3">
+                                        No Transaction <br/> Found
+                                    </p>
+                                </div>
+                            }
+
+                            {transactionsLoading &&
+                                <div className="grid justify-items-center place-content-center py-12 bg-white absolute top-0 left-0 w-full">
+                                    <div className="border-t-[3px] border-r-[3px] border-app-main border- bg-transparent rounded-full w-8 h-8 animate-spin"></div>
+                                    <div className="font-bold text-xs text-center pt-3">Loading...</div>
+                                </div>
+                            }
+                        </div>
 
                         <div className="flex justify-around items-center">
                             <div className="w-1/5 border-t"></div>
