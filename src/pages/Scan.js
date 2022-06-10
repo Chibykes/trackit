@@ -37,7 +37,7 @@ const Scan = () => {
         return(
             <>
                 <div>
-                    <div className="flex justify-center items-center py-4">
+                    <div className="flex justify-center items-center py-4 relative z-[10] bg-white">
                         <label className="mx-2 font-bold text-xs text-app-main">Select Camera: </label>
                         <select
                             className="block lg:w-1/3 w-1/2 mx-2 p-2 text-xs focus:boder-0 focus:outline-none bg-app-main text-white font-bold rounded-md"
@@ -57,7 +57,7 @@ const Scan = () => {
                         delay={300}
                         onError={(err) => console.log(err)}
                         onScan={(data) => data && navigate('/trx/'+data)}
-                        className="fixed top-0 left-0 right-0 w-full h-full flex justify-center items-center"
+                        className="fixed top-0 bottom-0 left-0 right-0 w-full h-full lg:h-[90%] flex justify-center items-center"
                         style={{ transform: 'rotateY(180deg)' }}
                         constraints={camera.cameraId && ({ audio: false, video: { deviceId: camera.cameraId } })}
                     />
