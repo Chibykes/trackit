@@ -51,6 +51,14 @@ const Scan = () => {
                             )}
                         </select>
                     </div>
+                    <div className="w-full relative z-[10] px-2">
+                        <p>{camera.cameraId}</p>
+                        {camera.devices && camera.devices.map(({deviceId, label}, index) => 
+                            <p value={deviceId} key={deviceId}>
+                                {index+1}. {label || `camera ${index}`} - {deviceId}
+                            </p>
+                        )}
+                    </div>
 
                     
                     <QrReader
