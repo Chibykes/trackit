@@ -58,7 +58,7 @@ const Receipt = () => {
 
 
                 {/* Main */}
-                <div className="p-5 lg:w-4/6 w-full space-y-8 lg:px-10 px-5 mx-auto border-r border-l border-gray-50">
+                <div className="p-5 lg:w-4/6 w-full space-y-8 lg:px-10 px-5 mx-auto border-r border-l border-gray-50 print:border-transparent">
 
                     {/* Header */}
                     <div className="flex justify-between items-center">
