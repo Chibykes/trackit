@@ -51,23 +51,23 @@ const Scan = () => {
                             )}
                         </select>
                     </div>
-                    <div className="w-full relative z-[10] px-2">
+                    {/* <div className="w-full relative z-[10] px-2">
                         <p>{camera.cameraId}</p>
                         {camera.devices && camera.devices.map(({deviceId, label}, index) => 
                             <p value={deviceId} key={deviceId}>
                                 {index+1}. {label || `camera ${index}`} - {deviceId}
                             </p>
                         )}
-                    </div>
+                    </div> */}
 
                     
                     <QrReader
                         delay={300}
                         onError={(err) => console.log(err)}
-                        onScan={(data) => data && navigate('/trx/'+data)}
+                        onScan={(data) => data?.text && navigate('/trx/'+data.text)}
                         className="fixed top-0 bottom-0 left-0 right-0 w-full h-full lg:h-[90%] flex justify-center items-center"
                         style={{ transform: 'rotateY(180deg)' }}
-                        constraints={camera.cameraId && ({ audio: false, video: { deviceId: camera.cameraId } })}
+                        constraints={camera?.cameraId && ({ audio: false, video: { deviceId: camera.cameraId } })}
                     />
                 </div>
             </>
