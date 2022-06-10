@@ -47,9 +47,9 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                             <span className="pl-3 font-bold text-xs"> Scan Receipt </span>
                         </Link>
 
-                        <Link to="/payments" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                        <Link to="/sales" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
                             <GiReceiveMoney className="text-xl"/>
-                            <span className="pl-3 font-bold text-xs"> New Payments </span>
+                            <span className="pl-3 font-bold text-xs"> New Sales </span>
                         </Link>
                         
                         <Link to="/spendings" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">

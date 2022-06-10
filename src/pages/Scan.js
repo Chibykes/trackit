@@ -1,4 +1,6 @@
 import QrReader from 'react-qr-scanner';
+import { isMobile } from 'react-device-detect';
+
 import { useNavigate } from 'react-router-dom';
 
 const Scan = () => {
@@ -13,7 +15,8 @@ const Scan = () => {
                     onScan={(data) => data && navigate('/trx/'+data)}
                     className="fixed w-full h-full flex justify-center items-center"
                     style={{ transform: 'rotateY(180deg)' }}
-                    resolution={720}
+                    constraints={{facingMode: isMobile ? 'environment' : 'user'}}
+                    facingmode={isMobile ? 'environment' : 'user'}
                 />
             </div>
         </>
