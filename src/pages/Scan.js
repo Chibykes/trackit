@@ -34,6 +34,19 @@ const Scan = () => {
         return(
             <>
                 <div>
+                    <select
+                        className="w-full my-3 mx-2 p-2 text-xs"
+                        onChange={e => setCamera({...camera, cameraId: value })}
+                        >
+                        {camera.devices.map(({deviceId, label}, index) => (
+                            <React.Fragment key={deviceId}>
+                                <option value={deviceId}>
+                                    {label || `camera ${index}`}
+                                </option>
+                            </React.Fragment>
+                        ))}
+                    </select>
+
                     <QrReader
                         delay={300}
                         onError={(err) => console.log(err)}
