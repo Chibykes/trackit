@@ -2,6 +2,7 @@ import {useState, useContext} from 'react';
 import {RiDeleteBin6Line} from 'react-icons/ri';
 import {HiPlusCircle} from 'react-icons/hi';
 import {IoMdClose} from 'react-icons/io';
+import { motion } from 'framer-motion';
 
 import {AppContext} from '../context/AppContext';
 import formatMoney from '../utils/formatMoney';
@@ -14,7 +15,14 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
         product: '',
         qty: '',
         price: '',
-    })
+    });
+
+    const [pan, setPan] = useState({ start: {}, end: {} });
+    const popup = {
+        initial: { bottom: '-100%' },
+        animate: { bottom: modalClose ? '-100%' : '0%' },
+        transition: { duration: 0.5, type: 'tween', stiffness: 100 }
+    }
 
     const handleItemChange = (e) => {
         setItem({
@@ -114,8 +122,8 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
                 </div>
             :
                 <div className="text-center text-gray-500 py-8">
-                    <p className="text-lg text-center font-bold">No Itmes added</p>
-                    <p className="text-sm text-center">Click "Add" to begin...</p>
+                    <p className="text-sm text-center font-bold">No Itmes added yet</p>
+                    <p className="text-[.625rem] text-center">Click "Add" to begin...</p>
                 </div>
             }
 
@@ -124,8 +132,15 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
 
         <div className={`${modalClose ? 'hidden' : 'block'} fixed top-0 left-0 w-full h-full bg-black opacity-30 mt-[0!important] z-[2]`}></div>
 
-        <div className={`${modalClose ? 'hidden' : 'block'} fixed bottom-0 left-0 right-0 w-full h-[80vh] bg-white lg:w-[calc(42%*4/6)] lg:p-10 py-10 px-8 mx-auto rounded-t-xl z-[3]`}>
-            <div className="">
+        <motion.div className={`block fixed bottom-[-100%] left-0 right-0 w-full h-[80vh] bg-white lg:w-[calc(42%*4/6)] py-10 pt-5 px-8 mx-auto rounded-t-[2rem] z-[3] touch-pan-y`} {...popup}>
+            <div className="space-y-5">
+                <motion.div 
+                    onPanStart={(e, info) => setPan({...pan, start: {...info.point}})}
+                    onPanEnd={(e, info) => {
+                        return (info.point.y > pan.start.y + 50) && setModalClose(true)
+                    }}
+                    className="h-[6px] bg-zinc-200 rounded-full w-1/3 mx-auto">
+                </motion.div>
                 <div className="flex justify-between items-center mb-5">
                     <div className="text-xs text-left font-bold block">
                         Add Product
@@ -167,7 +182,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
         
         
         </>

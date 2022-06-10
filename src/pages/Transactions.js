@@ -76,7 +76,6 @@ const Transactions = () => {
                         <h1 className="font-bold">
                             Transactions
                         </h1>
-
                     </div>
 
 
