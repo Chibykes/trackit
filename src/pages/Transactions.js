@@ -27,9 +27,8 @@ const Transactions = () => {
 
         const query = input ? {
             $or: [
-                {id: {$regex: input.replace(/\\/ig, '')}},
-                {customer_name: {$regex: input.replace(/\\/ig, '')}},
-                {category: {$regex: input.replace(/\\/ig, '')}},
+                {id: {$regex: input.trim().toUpperCase().replace(/\\/ig, '')}},
+                {customer_name: {$regex: input.trim().toLowerCase().replace(/\\/ig, '')}},
             ]
         } : { };
 
@@ -132,7 +131,19 @@ const Transactions = () => {
 
                         {/* <h1 className="font-bold">Transactions</h1> */}
                         <div className="pt-3 relative">
-                            {transactions.length > 0 && transactions.map(trx => <Trx {...trx} key={trx.id}/>)}
+                            {transactions.length > 0 && 
+                                <>
+                                    {transactions.map(trx => <Trx {...trx} key={trx.id}/>)}
+
+                                    <div className="flex justify-around items-center pt-5">
+                                        <div className="w-1/5 border-t"></div>
+                                        <p className="text-center text-gray-400 text-xs font-bold py-3">
+                                            End
+                                        </p>
+                                        <div className="w-1/5 border-t"></div>
+                                    </div>
+                                </>
+                            }
 
                             {transactions.length <= 0 &&
                                 <div className="grid place-content-center py-16">
@@ -144,7 +155,7 @@ const Transactions = () => {
                             }
 
                             {transactionsLoading &&
-                                <div className="grid justify-items-center place-content-center py-12 bg-white absolute top-0 left-0 w-full">
+                                <div className="grid justify-items-center place-content-center py-12 bg-white absolute top-0 left-0 w-full h-full">
                                     {/* <div className="border-t-[3px] border-r-[3px] border-app-main border- bg-transparent rounded-full w-8 h-8 animate-spin"></div> */}
                                     <svg className="w-8 h-8 animate-spin" xmlns="http://www.w3.org/2000/svg" width="78.98" height="79.249" viewBox="0 0 78.98 79.249">
                                         <g id="Ellipse_2" data-name="Ellipse 2" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="190 300">
@@ -155,14 +166,6 @@ const Transactions = () => {
                                     <div className="font-bold text-xs text-center pt-3">Loading...</div>
                                 </div>
                             }
-                        </div>
-
-                        <div className="flex justify-around items-center">
-                            <div className="w-1/5 border-t"></div>
-                            <p className="text-center text-gray-400 text-xs font-bold py-3">
-                                End
-                            </p>
-                            <div className="w-1/5 border-t"></div>
                         </div>
 
 
