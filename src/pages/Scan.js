@@ -40,7 +40,7 @@ const Scan = () => {
                     <div className="flex justify-center items-center py-4">
                         <label className="mx-2 font-bold text-xs text-app-main">Select Camera: </label>
                         <select
-                            className="block lg:w-1/3 w-1/2 mx-2 p-2 text-xs border border-zinc-800 bg-app-main text-white font-bold"
+                            className="block lg:w-1/3 w-1/2 mx-2 p-2 text-xs focus:boder-0 focus:outline-none bg-app-main text-white font-bold rounded-md"
                             onChange={(e) => setCamera({...camera, cameraId: e.target.value })}
                             >
                             <option value="">Choose Cameras</option>
