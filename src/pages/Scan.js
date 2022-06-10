@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import QrReader from 'react-qr-scanner';
+import {isMobile} from 'react-device-detect';
 import { useNavigate } from 'react-router-dom';
 
 const Scan = () => {
@@ -66,7 +67,7 @@ const Scan = () => {
                         onError={(err) => console.log(err)}
                         onScan={(data) => data?.text && navigate('/trx/'+data.text)}
                         className="fixed top-0 bottom-0 left-0 right-0 w-full h-full lg:h-[90%] flex justify-center items-center"
-                        style={{ transform: 'rotateY(180deg)' }}
+                        style={{ transform: isMobile ? 'rotateY(0deg)' : 'rotateY(180deg)' }}
                         constraints={camera?.cameraId && ({ audio: false, video: { deviceId: camera.cameraId } })}
                     />
                 </div>
