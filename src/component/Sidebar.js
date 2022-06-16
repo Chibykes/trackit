@@ -10,6 +10,8 @@ import { RiDashboardLine } from 'react-icons/ri';
 import { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
+import staffImg from '../static/2534879.png';
+
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
     const { user } = useContext(AppContext);
@@ -23,7 +25,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
             `} style={{ transition: 'width .5s, left .5s' }}>
                 <div className="pb-5 h-1/4 lg:h-1/5 relative grid place-content-center">
                     <div className="inline-block relative"> 
-                        <img src={user && user.img} alt="" className="rounded-full mx-auto w-20 h-20 border-4 border-white shadow-lg"/>
+                        <img src={user?.img || staffImg} alt="" className="rounded-full mx-auto w-20 h-20 border-4 border-white shadow-lg"/>
                         <div className="bg-white w-5 h-5 p-2 grid place-content-center text-sm text-app-main rounded-full mx-auto absolute top-0" style={{ left: '60%' }}>
                             <BiPencil />
                         </div>

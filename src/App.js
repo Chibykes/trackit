@@ -9,6 +9,7 @@ import Error from './pages/Error';
 import Transactions from './pages/Transactions';
 import Receipt from './pages/Receipt';
 import Scan from './pages/Scan';
+import Staffs from './pages/Staffs';
 import Logout from './pages/Logout';
 import {AppProvider} from './context/AppContext';
 import ResolveDebts from './pages/ResolveDebts';
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/transactions" element={<Transactions />} />
           <Route path="/resolve-debts" element={<ResolveDebts />} />
           <Route path="/debts/:id" element={<Debts />} />
+          <Route path="/new-staff" element={<Staffs />} />
           <Route path="/scan" element={<Scan />} />
           <Route path="/trx/:id" element={<Receipt />} />
           <Route path="/logout" element={<Logout />} />

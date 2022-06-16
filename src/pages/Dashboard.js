@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
 import { MdQrCodeScanner, MdOutlineMoneyOffCsred } from 'react-icons/md';
 import { GiReceiveMoney, GiPayMoney } from 'react-icons/gi';
-import { HiMenuAlt1 } from 'react-icons/hi';
+import { HiMenuAlt1, HiUserGroup } from 'react-icons/hi';
 import { BsReceipt } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
 import { AiFillPieChart, AiOutlineFileSearch } from 'react-icons/ai';
@@ -103,12 +103,19 @@ const Dashboard = (props) => {
                 {/* Overview */}
                 <div className="bg-black p-4 text-white divide-x divide-gray-400 flex text-center rounded-xl">
                     <div className="p-3 flex-initial w-2/3 flex-grow-2">
-                        <h1 className="font-bold text-3xl">
-                            &#8358; {
-                            dailyVolume.length > 0 ? formatMoney(dailyVolume.reduce((t, d) => {
-                                return t += d.amount
-                            }, 0)) : 0
-                        } </h1>
+                        {user?.role !== 'staff' ? 
+                            <h1 className="font-bold text-3xl">
+                                &#8358; {
+                                    dailyVolume.length > 0 ? formatMoney(dailyVolume.reduce((t, d) => {
+                                        return t += d.amount
+                                    }, 0)) : 0
+                                }
+                            </h1>
+                            :
+                            <h1 className="font-bold text-3xl">
+                                &#8358; **,***
+                            </h1>
+                        }
                         <p className="text-xs pt-2"
                             style={
                                 {fontSize: '0.6rem'}
@@ -202,16 +209,16 @@ const Dashboard = (props) => {
                         
 
                         
-                            <Link to="/reports" className="flex justify-start items-center w-1/2 my-2 py-2
+                            <Link to="/new-staff" className="flex justify-start items-center w-1/2 my-2 py-2
                                 hover:bg-gray-50 rounded-lg
                             ">
-                                <AiFillPieChart className="text-app-main text-xl"/>
+                                <HiUserGroup className="text-app-main text-xl"/>
                                 <div className="px-3 space-y-1">
                                     <p className="text-left text-sm font-bold">
-                                        Reports
+                                        Staffs
                                     </p>
                                     <p className="text-left text-xs text-gray-400">
-                                        Detailed Analysis
+                                        Add New Staffs
                                     </p>
                                 </div>
                             </Link>
