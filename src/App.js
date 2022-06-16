@@ -11,6 +11,8 @@ import Receipt from './pages/Receipt';
 import Scan from './pages/Scan';
 import Logout from './pages/Logout';
 import {AppProvider} from './context/AppContext';
+import ResolveDebts from './pages/ResolveDebts';
+import Debts from './pages/Debts';
 // import Splash from './component/Splash';
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route exact path="/sales" element={<Sales />} />
           <Route exact path="/spendings" element={<Spendings />} />
           <Route exact path="/transactions" element={<Transactions />} />
+          <Route path="/resolve-debts" element={<ResolveDebts />} />
+          <Route path="/debts/:id" element={<Debts />} />
           <Route path="/scan" element={<Scan />} />
           <Route path="/trx/:id" element={<Receipt />} />
           <Route path="/logout" element={<Logout />} />

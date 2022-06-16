@@ -15,6 +15,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
         product: '',
         qty: '',
         price: '',
+        description: ''
     });
 
     const [pan, setPan] = useState({ start: {}, end: {} });
@@ -35,6 +36,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
         e.preventDefault();
 
         for( let property in item) {
+            if(item['description'] === '') continue;
             if(item[property] === '') {
                 Toast('error', `Please fill all the fields`);
                 return;
@@ -46,6 +48,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
             product: '',
             qty: '',
             price: '',
+            description: '',
         });
         Toast('success','Item added');
     }
@@ -69,7 +72,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
             {sales.length > 0 ? 
             
                 <div className="space-y-3">{
-                    sales.map(({ product, qty, price }, index) =>
+                    sales.map(({ product, qty, price, description }, index) =>
                         <div className="border border-app-light rounded-lg p-3" key={index+1}>
                             <div className="grid grid-cols-12">
                                 <div className="col-span-11 space-y-1">
@@ -87,6 +90,10 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
                                     <div className="flex justify-start items-center text-xs font-bold space-x-5">
                                         <span className="block w-1/4 text-xs text-gray-500 font-normal">Price (per): </span> 
                                         <span>&#8358; {formatMoney(parseInt(price))}</span>
+                                    </div>
+                                    <div className="flex justify-start items-center text-xs font-bold space-x-5">
+                                        <span className="block w-1/4 text-xs text-gray-500 font-normal">Description: </span> 
+                                        <span>{description}</span>
                                     </div>
                                     {/* <div className="text-xs font-bold space-x-5">
                                         <span className="text-xs text-gray-500 font-normal">Total Price: </span> 
@@ -133,7 +140,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
         <div className={`${modalClose ? 'hidden' : 'block'} fixed top-0 left-0 w-full h-full bg-black opacity-30 mt-[0!important] z-[2]`}></div>
 
         <motion.div className={`block fixed bottom-[-100%] left-0 right-0 w-full h-[80vh] bg-white lg:w-[calc(42%*4/6)] py-10 pt-5 px-8 mx-auto rounded-t-[2rem] z-[3] touch-pan-y`} {...popup}>
-            <div className="space-y-5">
+            <div className="space-y-5 overflow-y-auto">
                 <motion.div 
                     onPanStart={(e, info) => setPan({...pan, start: {...info.point}})}
                     onPanEnd={(e, info) => {
@@ -166,6 +173,13 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
                             onChange={handleItemChange}
                             value={item.price}
                         />
+                    </div>
+
+                    <div className="col-span-12">
+                        <textarea type="text" name="description" placeholder="A short description about the item" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full resize-none h-24"
+                            onChange={handleItemChange}
+                            value={item.description}> 
+                        </textarea>
                     </div>
 
                     <div className="col-span-12 py-5">

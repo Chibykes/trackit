@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import { MdQrCodeScanner } from 'react-icons/md';
+import { MdQrCodeScanner, MdOutlineMoneyOffCsred } from 'react-icons/md';
 import { GiReceiveMoney,GiPayMoney } from 'react-icons/gi';
 import { BsReceipt } from 'react-icons/bs';
 import { BiPencil } from 'react-icons/bi';
@@ -33,7 +33,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                     <FaTimes className="absolute top-1 right-5 lg:hidden" onClick={()=>setShowSidebar(!showSidebar)} />
                 </div>
 
-                <div className="px-5 pt-3 relative flex flex-wrap h-3/4 lg:h-4/5 border-t border-gray-100">
+                <div className="px-5 pt-3 relative flex flex-wrap h-3/4 lg:h-4/5 border-t border-gray-100 overflow-y-auto">
 
                     <div className="w-full space-y-1">
 
@@ -60,6 +60,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                         <Link to="/transactions" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
                             <BsReceipt className="text-xl"/>
                             <span className="pl-3 font-bold text-xs"> Transactions </span>
+                        </Link>
+
+                        <Link to="/resolve-debts" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                            <MdOutlineMoneyOffCsred className="text-xl"/>
+                            <span className="pl-3 font-bold text-xs"> Resolve Debts </span>
                         </Link>
                         
                         <Link to="/reports" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">

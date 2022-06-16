@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react';
 import {Link, useNavigate, useSearchParams} from 'react-router-dom';
-import { MdQrCodeScanner } from 'react-icons/md';
+import { MdQrCodeScanner, MdOutlineMoneyOffCsred } from 'react-icons/md';
 import { GiReceiveMoney, GiPayMoney } from 'react-icons/gi';
 import { HiMenuAlt1 } from 'react-icons/hi';
 import { BsReceipt } from 'react-icons/bs';
@@ -186,16 +186,16 @@ const Dashboard = (props) => {
                         
 
                         
-                            <Link to="/scan" className="flex justify-start items-center w-1/2 my-2 py-2
+                            <Link to="/resolve-debts" className="flex justify-start items-center w-1/2 my-2 py-2
                                 hover:bg-gray-50 rounded-lg
                             ">
-                                <MdQrCodeScanner className="text-app-main text-xl"/>
+                                <MdOutlineMoneyOffCsred className="text-app-main text-xl"/>
                                 <div className="px-3 space-y-1">
                                     <p className="text-left text-sm font-bold">
-                                        Scan
+                                        Resolve Debt
                                     </p>
                                     <p className="text-left text-xs text-gray-400">
-                                        Scan a recipt
+                                        Clear customer debts
                                     </p>
                                 </div>
                             </Link>
@@ -218,16 +218,16 @@ const Dashboard = (props) => {
                         
 
                         
-                            <Link to="/search" className="flex justify-start items-center w-1/2 my-2 py-2
+                            <Link to="/scan" className="flex justify-start items-center w-1/2 my-2 py-2
                                 hover:bg-gray-50 rounded-lg
                             ">
-                                <AiOutlineFileSearch className="text-app-main text-xl"/>
+                                <MdQrCodeScanner className="text-app-main text-xl"/>
                                 <div className="px-3 space-y-1">
                                     <p className="text-left text-sm font-bold">
-                                        Search Transc.
+                                        Scan
                                     </p>
                                     <p className="text-left text-xs text-gray-400">
-                                        Check Trx. by ID
+                                        Scan receipts
                                     </p>
                                 </div>
                             </Link>

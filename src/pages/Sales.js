@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useRef} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
 
@@ -6,12 +6,14 @@ import { AppContext } from '../context/AppContext';
 import Sidebar from '../component/Sidebar';
 import Splash from '../component/Splash';
 import SalesDetails from '../component/SalesDetails';
+import formatMoney from '../utils/formatMoney';
 
 
 const Sales = () => {
 
+    
     const navigate = useNavigate();
-
+    
     const { url, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
     const [showSidebar, setShowSidebar] = useState(false);
     const [modalClose, setModalClose] = useState(true);
@@ -19,31 +21,39 @@ const Sales = () => {
     const [formData, setFormData] = useState({
         customer_name: '',
         customer_phone: '',
+        balance: 0,
         amount: 0,
-        balance: 0
+        discount: 0,
+        description: ''
     });
     
+    const amountRef = useRef(null);
+    const discountRef = useRef(null);
 
     const handleFormData = (e) => {
-        let balance = 0;
-        
-        if(e.target.name === 'amount'){
+
+        if((e.target.name === 'amount') || (e.target.name === 'discount')){
             if(sales.length <= 0) return Toast('error', `Please add sales items`);
 
-            balance = sales.reduce((acc, curr) => {
-                return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
-            }, 0) - parseInt(e.target.value);
+            return setFormData({
+                ...formData,
+                balance: sales.reduce((acc, curr) => {
+                    return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
+                }, 0) - parseInt(amountRef.current.value || 0) - parseInt(discountRef.current.value || 0),
+                [e.target.name]: e.target.value,
+            })
+        
         }
 
         setFormData({
             ...formData,
-            balance,
             [e.target.name]: e.target.value,
         })
     }
 
     const detailsComplete = () => {
         for( let property in formData) {
+            if(formData['description'] === '') continue;
             if(formData[property] === '') {
                 return false;
             }
@@ -60,7 +70,7 @@ const Sales = () => {
         e.preventDefault();
         setLoadSplash(true);
         if(!detailsComplete()) return Toast('error', `Please fill all the fields`);
-        console.log({...formData, sales})
+        // return console.log({...formData, sales})
         
         fetch(`${url}/new-sales`, {
             method: 'post',
@@ -120,6 +130,21 @@ const Sales = () => {
                         </Link>
                     </p>
 
+
+                    <div className="sticky top-0 py-3 bg-white">
+                        <div className="p-3 bg-app-main rounded-lg shadow-lg">
+                            <div className="text-white text-3xl text-center font-bold pb-2">&#8358; 
+                                {formatMoney(
+                                    (sales.reduce((acc, curr) => {
+                                        return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
+                                    }, 0)) - parseInt(formData.discount || 0)
+                                )}
+                            </div>
+                            <p className="text-center text-white text-[.5rem]">Final Amount Payable</p>
+                        </div>
+                    </div>
+
+
                     <form className="w-full py-5 space-y-5"
                         onSubmit={submitData}>
 
@@ -154,12 +179,23 @@ const Sales = () => {
                         
 
 
+                        <div className="">
+                            <label className="text-xs font-bold block pb-2">
+                                Discount
+                            </label>
+                            <input type="number" name="discount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                                ref={discountRef}
+                                onChange={handleFormData}
+                                value={formData.discount}
+                                />
+                        </div>
 
                         <div className="">
                             <label className="text-xs font-bold block pb-2">
                                 Amount Customer Paid
                             </label>
-                            <input type="number" name="amount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                            <input type="number" name="amount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full" 
+                                ref={amountRef}
                                 onChange={handleFormData}
                                 value={formData.amount}
                                 />
@@ -176,10 +212,15 @@ const Sales = () => {
                         </div>
 
 
-
-
-
-
+                        <div className="">
+                            <label className="text-xs font-bold block pb-2">
+                                Sale Description
+                            </label>
+                            <textarea type="text" name="description" placeholder="A short description about transaction" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full resize-none h-24"
+                                onChange={handleFormData}
+                                value={formData.description}>
+                            </textarea>
+                        </div>
 
 
                         <div className="">
