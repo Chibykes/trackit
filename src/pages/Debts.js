@@ -33,6 +33,8 @@ const Debts = () => {
     const handleResolve = () => {
         if(!balance) return Toast('error', 'Please specify amount to resolve');
 
+        setLoadSplash(true);
+
         fetch(`${url}/resolve-debt`, {
             method: 'post',
             headers: {
