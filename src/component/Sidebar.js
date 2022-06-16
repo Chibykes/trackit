@@ -3,6 +3,7 @@ import { MdQrCodeScanner, MdOutlineMoneyOffCsred } from 'react-icons/md';
 import { GiReceiveMoney,GiPayMoney } from 'react-icons/gi';
 import { BsReceipt } from 'react-icons/bs';
 import { BiPencil } from 'react-icons/bi';
+import { HiUserGroup } from 'react-icons/hi';
 import { FiLogOut, } from 'react-icons/fi';
 import { FaTimes } from 'react-icons/fa';
 import { AiFillPieChart } from 'react-icons/ai';
@@ -65,8 +66,8 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                         </Link>
 
                         <Link to="/resolve-debts" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
-                            <MdOutlineMoneyOffCsred className="text-xl"/>
-                            <span className="pl-3 font-bold text-xs"> Resolve Debts </span>
+                            <HiUserGroup className="text-xl"/>
+                            <span className="pl-3 font-bold text-xs"> Staffs </span>
                         </Link>
                         
                         <Link to="/reports" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">

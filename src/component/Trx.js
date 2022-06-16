@@ -2,12 +2,12 @@ import {
     BiArrowToTop,
     BiArrowToBottom,
 } from 'react-icons/bi';
+import {Link} from 'react-router-dom';
 import { MdOutlineMoneyOffCsred } from 'react-icons/md';
 import formatMoney from '../utils/formatMoney';
 import formatDate from '../utils/formatDate';
-import {Link} from 'react-router-dom';
 
-const Trx = ({ id, type, customer_name, customer_phone, amount, balance, createdAt: date, forDebts }) => {
+const Trx = ({ id, type, customer_name, customer_phone, amount, balance, updatedAt: date, forDebts }) => {
 
     console.log(forDebts);
 
