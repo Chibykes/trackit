@@ -5,8 +5,8 @@ import "toastify-js/src/toastify.css";
 const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
-    const url = 'https://vg-backend.herokuapp.com/api';
-    // const url = 'http://localhost:8080/api';
+    // const url = 'https://vg-backend.herokuapp.com/api';
+    const url = 'http://localhost:8080/api';
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
     const [loadSplash, setLoadSplash] = useState(false);
 

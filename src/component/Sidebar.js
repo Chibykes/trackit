@@ -65,15 +65,19 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                             <span className="pl-3 font-bold text-xs"> Transactions </span>
                         </Link>
 
-                        <Link to="/resolve-debts" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
-                            <HiUserGroup className="text-xl"/>
-                            <span className="pl-3 font-bold text-xs"> Staffs </span>
-                        </Link>
+                        {user?.role !== 'staff' && 
+                            <>
+                                <Link to="/new-staff" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                                    <HiUserGroup className="text-xl"/>
+                                    <span className="pl-3 font-bold text-xs"> Staffs </span>
+                                </Link>
+                                <Link to="/reports" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                                    <AiFillPieChart className="text-xl"/>
+                                    <span className="pl-3 font-bold text-xs"> Reports </span>
+                                </Link>
+                            </>
+                        }
                         
-                        <Link to="/reports" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
-                            <AiFillPieChart className="text-xl"/>
-                            <span className="pl-3 font-bold text-xs"> Reports </span>
-                        </Link>
                         
                         {/* <Link to="/search" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
                             <AiOutlineFileSearch className="text-xl"/>

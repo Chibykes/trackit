@@ -208,6 +208,14 @@ const Receipt = () => {
 
 
                                     </div>}
+
+                                    <p className="text-center text-gray-400 pt-5 w-full"
+                                        style={
+                                            {fontSize: '.625rem'}
+                                    }>
+                                        Please Note: No refund of money after payments.<br />
+                                        We sincerely appreciate your patronage.
+                                    </p>
                                 
                                     <div className="flex flex-wrap justify-center items-center py-8 text-xs" style={{textTransform: 'capitalize'}}>
                                         <button type="" 
