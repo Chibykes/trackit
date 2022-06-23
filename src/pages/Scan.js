@@ -65,7 +65,7 @@ const Scan = () => {
                     <QrReader
                         delay={300}
                         onError={(err) => console.log(err)}
-                        onScan={(data) => data?.text && navigate('/receipt/'+data.text)}
+                        onScan={(data) => data?.text && navigate('/transactions/'+data.text)}
                         className="fixed top-0 bottom-0 left-0 right-0 w-full h-full lg:h-[90%] flex justify-center items-center"
                         style={{ transform: isMobile ? 'rotateY(0deg)' : 'rotateY(180deg)' }}
                         constraints={camera?.cameraId && ({ audio: false, video: { deviceId: camera.cameraId } })}
