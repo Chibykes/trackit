@@ -25,13 +25,14 @@ const SingleTransaction = () => {
     const [singleTrx, setSingleTrx] = useState({});
 
     const deleteTrx = () => {
+        setLoadSplash(true);
         fetch(`${url}/delete-trx?query=${JSON.stringify(query)}`, {
             credentials: 'include'
         })
         .then(res => res.json())
         .then(({status}) => {
+            setLoadSplash(false);
             if(status === 'success'){
-                setLoadSplash(false);
                 navigate('/transactions');
                 return Toast('success', 'Transaction successfully deleted')
             }
