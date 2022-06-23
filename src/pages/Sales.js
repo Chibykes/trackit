@@ -24,7 +24,8 @@ const Sales = () => {
         balance: 0,
         amount: 0,
         discount: 0,
-        description: ''
+        description: '',
+        payment_method: ''
     });
     
     const amountRef = useRef(null);
@@ -88,7 +89,7 @@ const Sales = () => {
                 return Toast('error','Session expired');
             }
 
-            navigate(`/trx/${data.id}`);
+            navigate(`/transactions/${data.id}`);
         })
         .catch(err => {
             Toast('error','An error occurred. Check Internet connection');
@@ -199,6 +200,19 @@ const Sales = () => {
                                 onChange={handleFormData}
                                 value={formData.amount}
                                 />
+                        </div>
+                        <div className="">
+                            <label className="text-xs font-bold block pb-2">
+                                Payment Method
+                            </label>
+                            <select name="payment_method" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                                onChange={handleFormData}
+                                value={formData.payment_method}
+                            >
+                                <option value="">Choose a payment method</option>
+                                <option value="cash" selected={formData.payment_method === 'cash'}>Cash</option>
+                                <option value="bank transfer" selected={formData.payment_method === 'bank transfer'}>Bank Transfer</option>
+                            </select>
                         </div>
 
                         <div className="">

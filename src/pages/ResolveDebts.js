@@ -26,12 +26,13 @@ const ResolveDebts = () => {
         setTransactionsLoading(true);
 
         const query = input ? {
+            type:'sales',
             balance: { $ne: 0 },
             $or: [
                 {id: {$regex: input.trim().toUpperCase().replace(/\\/ig, '')}},
                 {customer_name: {$regex: input.trim().toLowerCase().replace(/\\/ig, '')}},
             ]
-        } : { balance: { $ne: 0 } };
+        } : { type:'sales', balance: { $ne: 0 } };
 
         fetch(`${url}/trx?limit=${limit || 10}&query=${JSON.stringify(query)}`, {
             method: 'get',
@@ -51,6 +52,7 @@ const ResolveDebts = () => {
         })
         .catch(err => {
             setLoadSplash(false);
+            setTransactionsLoading(false);
             Toast('error', 'An error occurred. Check Internet connection');
         })
     }
@@ -75,7 +77,7 @@ const ResolveDebts = () => {
                             title=""/>
 
                         <h1 className="font-bold">
-                            Transactions
+                            Unpaid Transactions
                         </h1>
                     </div>
 
