@@ -15,6 +15,7 @@ import {AppProvider} from './context/AppContext';
 import ResolveDebts from './pages/ResolveDebts';
 import Debts from './pages/Debts';
 import SingleTransaction from './pages/SingleTransaction';
+import Edit from './pages/Edit';
 // import Splash from './component/Splash';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route exact path="/spendings" element={<Spendings />} />
           <Route exact path="/transactions" element={<Transactions />} />
           <Route exact path="/transactions/:id" element={<SingleTransaction />} />
+          <Route exact path="/edit/:id" element={<Edit />} />
           <Route path="/resolve-debts" element={<ResolveDebts />} />
           <Route path="/debts/:id" element={<Debts />} />
           <Route path="/new-staff" element={<Staffs />} />

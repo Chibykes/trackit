@@ -83,12 +83,13 @@ const Sales = () => {
         })
         .then(res => res.json())
         .then(({data, user}) => {
+            setLoadSplash(false);
             if(!user){
                 navigate(`/`)
-                setLoadSplash(false);
                 return Toast('error','Session expired');
             }
 
+            Toast('success','Sale Added');
             navigate(`/transactions/${data.id}`);
         })
         .catch(err => {

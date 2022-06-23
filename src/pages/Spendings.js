@@ -26,7 +26,7 @@ const Spendings = () => {
     const submitData = (e) => {
         e.preventDefault();
         setLoadSplash(true);
-
+        
         fetch(`${url}/new-spendings`, {
             method: 'post',
             headers: {
@@ -37,6 +37,8 @@ const Spendings = () => {
         })
         .then(res => res.json())
         .then(({data}) => {
+            setLoadSplash(false);
+            Toast('success','Expenses Added');
             navigate(`/transactions/${data.id}`);
         })
         .catch(err => {
@@ -103,7 +105,7 @@ const Spendings = () => {
 
                         <div className="">
                             <label className="text-xs font-bold block pb-2">
-                                Amount
+                                Amount Spent
                             </label>
                             <input type="number" placeholder="Total Amount Spent" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
                                 ref={amountRef}

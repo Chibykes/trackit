@@ -1,12 +1,8 @@
 import {useState, useEffect, useContext} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
-<<<<<<< HEAD
-import {BiTrash} from 'react-icons/bi';
-=======
 import {BiTrash, BiEditAlt} from 'react-icons/bi';
 import {BsReceipt} from 'react-icons/bs';
->>>>>>> 86cc6db66d34878349f7b741efa15fd943d7b774
 import {MdOutlineMoneyOffCsred} from 'react-icons/md';
 
 import { AppContext } from '../context/AppContext';
@@ -116,13 +112,13 @@ const SingleTransaction = () => {
 
                         {user?.role !== "staff" && 
                         <>
-                            <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-sky-50" onClick={() => delete(singleTrx?.id)}>
+                            <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-sky-50" onClick={() => navigate(`/edit/${singleTrx?.id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiEditAlt className="text-lg text-sky-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-sky-500">Edit</div>
                             </div>
-                            <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-red-50" onClick={ deleteTrx}>
+                            <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-red-50" onClick={deleteTrx}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiTrash className="text-lg text-red-500" />
                                 </div>
@@ -131,12 +127,12 @@ const SingleTransaction = () => {
                         </>
                         }
 
-                        <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
+                        {singleTrx?.type === 'sales' && <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
                             <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                 <BsReceipt className="text-lg text-green-500" />
                             </div>
                             <div className="font-bold text-center text-[.625rem] text-green-500">View Receipt</div>
-                        </div>
+                        </div>}
                     </div>
 
 
@@ -165,6 +161,11 @@ const SingleTransaction = () => {
                                 </div>
                             </>
                         }
+
+                        <div className="">
+                            <p className="text-xs block pb-2">Description</p>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.description || '-'}</div>
+                        </div>
 
                         <div className="space-y-3">
                             <p className="text-xs block pb-2">Items Bought</p>
