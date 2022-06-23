@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
-import {BiTrash} from 'react-icons/bi';
+import {BiTrash, BiEditAlt} from 'react-icons/bi';
 import {BsReceipt} from 'react-icons/bi';
 import {MdOutlineMoneyOffCsred} from 'react-icons/md';
 
@@ -97,7 +97,7 @@ const SingleTransaction = () => {
                         <>
                             <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-sky-50" onClick={() => delete(singleTrx?.id)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
-                                    <BiTrash className="text-sky-500" />
+                                    <BiEditAlt className="text-sky-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-sky-500">Edit</div>
                             </div>
@@ -109,7 +109,7 @@ const SingleTransaction = () => {
                             </div>
                             <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
-                                    <BiTrash className="text-green-500" />
+                                    <BsReceipt className="text-green-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-green-500">View Receipt</div>
                             </div>
