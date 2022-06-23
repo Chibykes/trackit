@@ -57,7 +57,7 @@ const Debts = () => {
             }
 
             Toast('success', 'Debt successfully resolved');
-            navigate(`/receipt/${id}`);
+            navigate(`/transactions/${id}`);
 
         })
         .catch(err => {
