@@ -100,7 +100,7 @@ const SingleTransaction = () => {
                             <p className="text-center text-white text-xs">Remaining Debt</p>
                         </div>
                     </div> */}
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-4 gap-2">
                         {parseInt(singleTrx?.balance) !== 0 && singleTrx?.type === 'sales' &&
                             <div className="grid place-content-center p-2 col-span-2 w-full gap-1 rounded-md bg-purple-50" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
