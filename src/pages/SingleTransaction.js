@@ -20,16 +20,33 @@ const SingleTransaction = () => {
     const [showSidebar, setShowSidebar] = useState(false);
 
     const { id } = useParams();
+    const query = {id}
 
     const [singleTrx, setSingleTrx] = useState({});
 
+    const deleteTrx = () => {
+        fetch(`${url}/delete-trx?query=${JSON.stringify(query)}`, {
+            credentials: 'include'
+        })
+        .then(res => res.json())
+        .then(({status}) => {
+            if(status === 'success'){
+                setLoadSplash(false);
+                navigate('/transactions');
+                return Toast('success', 'Transaction successfully deleted')
+            }
+
+            return Toast('error', 'An error occurred.');
+        })
+        .catch(err => {
+            setLoadSplash(false);
+            Toast('error', 'An error occurred. Check Internet connection')
+        });
+    }
 
 
     useEffect(() => {
         setLoadSplash(true);
-        const query = {
-            id
-        }
         
         fetch(`${url}/trx?query=${JSON.stringify(query)}`, {
             credentials: 'include'
@@ -101,20 +118,21 @@ const SingleTransaction = () => {
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-sky-500">Edit</div>
                             </div>
-                            <div className="grid place-content-center p-2 col-span-1 w-full gap-1 rounded-md bg-red-50" onClick={() => delete(singleTrx?.id)}>
+                            <div className="grid place-content-center p-2 col-span-1 w-full gap-1 rounded-md bg-red-50" onClick={ deleteTrx}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiTrash className="text-lg text-red-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-red-500">Delete</div>
                             </div>
-                            <div className="grid place-content-center p-2 col-span-1 w-full gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
-                                <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
-                                    <BsReceipt className="text-lg text-green-500" />
-                                </div>
-                                <div className="font-bold text-center text-[.625rem] text-green-500">View Receipt</div>
-                            </div>
                         </>
                         }
+
+                        <div className="grid place-content-center p-2 col-span-1 w-full gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
+                            <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
+                                <BsReceipt className="text-lg text-green-500" />
+                            </div>
+                            <div className="font-bold text-center text-[.625rem] text-green-500">View Receipt</div>
+                        </div>
                     </div>
 
 
