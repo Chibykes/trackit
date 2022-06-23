@@ -107,11 +107,11 @@ const SingleTransaction = () => {
                                 </div>
                                 <div className="text-[.625rem] text-red-500">Delete</div>
                             </div>
-                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-green-50" onClick={() => delete(singleTrx?.id)}>
+                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiTrash className="text-green-500" />
                                 </div>
-                                <div className="text-[.625rem] text-green-500">Receipt</div>
+                                <div className="text-[.625rem] text-green-500">View Receipt</div>
                             </div>
                         </>
                         }

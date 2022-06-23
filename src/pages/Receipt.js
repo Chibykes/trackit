@@ -81,7 +81,7 @@ const Receipt = () => {
                         { receipt ?
                             <div className="space-y-3" >
 
-                                <div className="flex justify-end gap-5">
+                                {/* <div className="flex justify-end gap-5">
                                     {parseInt(receipt?.balance) !== 0 && 
                                         <div className="print:hidden flex justify-end">
                                             <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-app-main flex justify-between items-center rounded-md active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
@@ -95,7 +95,7 @@ const Receipt = () => {
                                             <span>Delete</span>
                                         </div>
                                     </div>}
-                                </div>
+                                </div> */}
 
                                 <div className="py-3 flex justify-between items-center">
                                     <div className="">
