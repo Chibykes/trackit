@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import {AppContext} from '../context/AppContext';
 import formatMoney from '../utils/formatMoney';
 
-const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
+const SalesDetails = ({ sales, setSales, modalClose, setModalClose, spendings }) => {
 
     const { Toast } = useContext(AppContext);
 
@@ -191,7 +191,7 @@ const SalesDetails = ({ sales, setSales, modalClose, setModalClose }) => {
 
                     <div className="col-span-12">
                         <button type="text" className="p-3 bg-app-main text-white text-sm rounded-xl block w-full mx-auto font-bold active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={handleItemAdd}>
-                            Add Sales
+                            {spendings ? 'Add Expenses':'Add Sales'}
                         </button>
                     </div>
                 </div>

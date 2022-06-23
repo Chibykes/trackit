@@ -50,6 +50,7 @@ const Transactions = () => {
         })
         .catch(err => {
             setLoadSplash(false);
+            setTransactionsLoading(false);
             Toast('error', 'An error occurred. Check Internet connection');
         })
     }

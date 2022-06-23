@@ -19,7 +19,7 @@ const Receipt = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { url, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
+    const { url, user, setUser, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
     const [receipt, setReceipt] = useState({ });
     const [showSidebar, setShowSidebar] = useState(false);
 
@@ -37,6 +37,7 @@ const Receipt = () => {
             setLoadSplash(false);
             if(!user) return navigate('/?status=error&msg=Session expired');
             
+            setUser(user);
             setReceipt(data[0]);
         })
         .catch(err => {
@@ -61,7 +62,7 @@ const Receipt = () => {
                 <div className="p-5 lg:w-4/6 w-full space-y-8 lg:px-10 px-5 mx-auto border-r border-l border-gray-50 print:border-transparent">
 
                     {/* Header */}
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center print:hidden">
                         <HiMenuAlt1 onClick={() => setShowSidebar(!showSidebar)} className="" title="" />
 
                         <h1 className="font-bold">
@@ -80,13 +81,21 @@ const Receipt = () => {
                         { receipt ?
                             <div className="space-y-3" >
 
-                                {parseInt(receipt?.balance) !== 0 && 
-                                    <div className="print:hidden flex justify-end">
-                                        <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-app-main flex justify-between items-center rounded-md active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
-                                            <span>Resolve Debt</span>
+                                <div className="flex justify-end gap-5">
+                                    {parseInt(receipt?.balance) !== 0 && 
+                                        <div className="print:hidden flex justify-end">
+                                            <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-app-main flex justify-between items-center rounded-md active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
+                                                <span>Resolve Debt</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                }
+                                    }
+
+                                    {user?.role !== "staff" && <div className="print:hidden flex justify-end">
+                                        <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-red-400 flex justify-between items-center rounded-md active:ring-red-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
+                                            <span>Delete</span>
+                                        </div>
+                                    </div>}
+                                </div>
 
                                 <div className="py-3 flex justify-between items-center">
                                     <div className="">

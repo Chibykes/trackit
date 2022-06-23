@@ -64,6 +64,11 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                             <BsReceipt className="text-xl"/>
                             <span className="pl-3 font-bold text-xs"> Transactions </span>
                         </Link>
+                        
+                        <Link to="/resolve-debts" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                            <MdOutlineMoneyOffCsred className="text-xl"/>
+                            <span className="pl-3 font-bold text-xs"> Resolve Debts </span>
+                        </Link>
 
                         {user?.role !== 'staff' && 
                             <>

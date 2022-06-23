@@ -1,6 +1,8 @@
 import {useState, useEffect, useContext} from 'react';
-import {useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
+import {BiTrash} from 'react-icons/bi';
+import {MdOutlineMoneyOffCsred} from 'react-icons/md';
 
 import { AppContext } from '../context/AppContext';
 import Sidebar from '../component/Sidebar';
@@ -8,81 +10,36 @@ import Splash from '../component/Splash';
 import formatMoney from '../utils/formatMoney';
 
 
-const Debts = () => {
+const SingleTransaction = () => {
 
     
     const navigate = useNavigate();
     
-    const { url, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
+    const { url, user, setUser, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
     const [showSidebar, setShowSidebar] = useState(false);
 
     const { id } = useParams();
 
-    const [salesData, setSalesData] = useState(null);
-    const [balance, setBalance] = useState(0);
-
-    const balancer = (e) => {
-        if(isNaN(e.target.value)) return setBalance(0); 
-
-        e.target.value > salesData?.balance ?
-        setBalance(salesData?.balance) : setBalance(e.target.value);
-
-        e.target.value < 0 && setBalance(0);
-    }
-
-    const handleResolve = () => {
-        if(!balance) return Toast('error', 'Please specify amount to resolve');
-
-        setLoadSplash(true);
-
-        fetch(`${url}/resolve-debt`, {
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include',
-            body: JSON.stringify({
-                id,
-                balance: salesData.balance - balance,
-                amount: parseInt(salesData.amount) + parseInt(balance)
-            })
-        })
-        .then(res => res.json())
-        .then(({status, msg, user}) => {
-
-            setLoadSplash(false);
-            if(!user) return navigate('/?status=error&msg=Session expired');
-            if(status === 'error'){
-                return Toast(status, msg)
-            }
-
-            Toast('success', 'Debt successfully resolved');
-            navigate(`/receipt/${id}`);
-
-        })
-        .catch(err => {
-            setLoadSplash(false);
-            Toast('error', 'An error occurred. Check Internet connection')
-        });
-    }
+    const [singleTrx, setSingleTrx] = useState({});
 
 
 
     useEffect(() => {
         setLoadSplash(true);
-        const query = { id };
+        const query = {
+            id
+        }
         
         fetch(`${url}/trx?query=${JSON.stringify(query)}`, {
-            credentials: 'include',
+            credentials: 'include'
         })
         .then(res => res.json())
         .then(({data, user}) => {
-
             setLoadSplash(false);
             if(!user) return navigate('/?status=error&msg=Session expired');
-
-            setSalesData(data[0]);
-
+            
+            setUser(user);
+            setSingleTrx(data[0]);
         })
         .catch(err => {
             setLoadSplash(false);
@@ -111,41 +68,63 @@ const Debts = () => {
                         title=""/>
 
                     <h1 className="font-bold">
-                        Resolve Debts
+                        Transc.- {id}
                     </h1>
                 </div>
 
                 <div className="">
 
-                    <div className="sticky top-0 py-4 bg-white">
+                    {/* <div className="sticky top-0 py-4 bg-white">
                         <div className="p-3 bg-app-main rounded-lg shadow-lg">
                             <div className="text-white text-3xl text-center font-bold pb-1">&#8358; 
-                                {formatMoney(salesData?.balance - balance)}
+                                {formatMoney(singleTrx?.balance - balance)}
                             </div>
                             <p className="text-center text-white text-xs">Remaining Debt</p>
                         </div>
+                    </div> */}
+                    <div className="flex justify-end gap-5">
+                        {parseInt(singleTrx?.balance) !== 0 &&
+                            <div className="grid place-content-center gap-1" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
+                                <div className="h-6 w-6 m-0 rounded-full bg-purple-50 grid place-content-center">
+                                    <MdOutlineMoneyOffCsred className="text-app-main" />
+                                </div>
+                                <div className="text-[.625rem] text-app-main">Resolve Debt</div>
+                            </div>
+                        }
+
+                        {user?.role !== "staff" && 
+                        <div className="grid place-content-center gap-1" onClick={() => delete(singleTrx?.id)}>
+                            <div className="h-6 w-6 m-0 rounded-full bg-red-50 grid place-content-center">
+                                <BiTrash className="text-red-500" />
+                            </div>
+                            <div className="text-[.625rem] text-red-500">Delete</div>
+                        </div>}
                     </div>
 
 
                     <div className="w-full py-5 space-y-5">
 
                         <div className="">
+                            <p className="text-xs block pb-2">Transaction Type</p>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.type === 'sales'? 'Sale' : 'Spendings'}</div>
+                        </div>
+                        <div className="">
                             <p className="text-xs block pb-2">Sale ID</p>
-                            <div className="text-xl capitalize font-bold">{salesData?.id}</div>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.id}</div>
                         </div>
                         <div className="">
                             <p className="text-xs block pb-2">Customer Name</p>
-                            <div className="text-xl capitalize font-bold">{salesData?.customer_name}</div>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.customer_name}</div>
                         </div>
 
                         <div className="">
                             <p className="text-xs block pb-2">Customer Phone</p>
-                            <div className="text-xl capitalize font-bold">{salesData?.customer_phone}</div>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.customer_phone}</div>
                         </div>
 
                         <div className="space-y-3">
                             <p className="text-xs block pb-2">Items Bought</p>
-                            {salesData?.sales?.map(({ product, qty, price, description }, index) =>
+                            {singleTrx?.sales?.map(({ product, qty, price, description }, index) =>
                                 <div className="border border-app-light rounded-lg p-3" key={index+1}>
                                     <div className="grid grid-cols-12">
                                         <div className="col-span-12 space-y-1">
@@ -180,48 +159,34 @@ const Debts = () => {
 
 
                         <div className="">
+                            <p className="text-xs block pb-2">Discount</p>
+                            <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.discount)}</div>
+                        </div>
+
+                        <div className="">
                             <p className="text-xs block pb-2">Amount Paid</p>
-                            <div className="text-xl capitalize font-bold">&#8358;{formatMoney(salesData?.amount)}</div>
+                            <div className="text-xl capitalize font-bold text-green-400">+ &#8358;{formatMoney(singleTrx?.amount)}</div>
+                        </div>
+
+                        <div className="">
+                            <p className="text-xs block pb-2">Payment Method</p>
+                            <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.payment_method)}</div>
                         </div>
 
                         <div className="">
                             <p className="text-xs block pb-2">Amount Unpaid</p>
-                            <div className="text-xl capitalize font-bold text-red-400">&#8358;{formatMoney(salesData?.balance)}</div>
+                            <div className="text-xl capitalize font-bold text-red-400">- &#8358;{formatMoney(singleTrx?.balance)}</div>
                         </div>
 
                         <div className="">
                             <p className="text-xs block pb-2">Reference</p>
-                            <div className="text-xl capitalize font-bold">{salesData?.reference}</div>
+                            <div className="text-xl capitalize font-bold">{singleTrx?.reference}</div>
                         </div>
 
                         <div className="">
-                            <p className="text-xs block pb-3">How much do you want to resolve?</p>
-
-                            <div className="grid grid-cols-12 rounded-lg border border-app-main">
-                                <div className="col-span-10">
-                                    <input 
-                                        type="number"
-                                        className="block w-full p-2 px-3"
-                                        placeholder="How much do you want to clear?"
-                                        onChange={balancer}
-                                        min={0}
-                                        max={salesData?.balance}
-                                        value={balance}
-                                    />
-                                </div>
-                                <div className="col-span-2 grid place-content-center w-full" 
-                                    onClick={() => setBalance(salesData?.balance)}
-                                >
-                                    <span className="text-[.625rem] font-bold block w-full text-app-main cursor-pointer">All</span>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div className="">
-                            <button type="text" className="p-3 bg-app-main text-white text-sm rounded-lg block w-full font-bold" onClick={handleResolve}>
-                                Resolve
-                            </button>
+                            <Link to={`/receipt/${id}`} type="text" className="block p-3 bg-app-main text-white text-sm rounded-lg block w-full font-bold">
+                                Show Receipt
+                            </Link>
                         </div>
 
                     </div>
@@ -237,4 +202,4 @@ const Debts = () => {
 
 };
 
-export default Debts;
+export default SingleTransaction;
