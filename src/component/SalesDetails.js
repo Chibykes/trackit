@@ -10,8 +10,6 @@ import formatMoney from '../utils/formatMoney';
 const SalesDetails = ({ sales, setSales, modalClose, setModalClose, spendings }) => {
 
 
-
-    // qqqqq
     const { Toast } = useContext(AppContext);
 
     const [ item, setItem ] = useState({

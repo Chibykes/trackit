@@ -2,6 +2,7 @@ import {useState, useEffect, useContext} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
 import {BiTrash} from 'react-icons/bi';
+import {BsReceipt} from 'react-icons/bi';
 import {MdOutlineMoneyOffCsred} from 'react-icons/md';
 
 import { AppContext } from '../context/AppContext';
@@ -82,10 +83,10 @@ const SingleTransaction = () => {
                             <p className="text-center text-white text-xs">Remaining Debt</p>
                         </div>
                     </div> */}
-                    <div className="flex justify-end gap-5">
+                    <div className="grid grid-cols-4 justify-items-end gap-5">
                         {parseInt(singleTrx?.balance) !== 0 &&
-                            <div className="grid place-content-center gap-1" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
-                                <div className="h-6 w-6 m-0 mx-auto rounded-full bg-purple-50 grid place-content-center">
+                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-purple-50" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
+                                <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <MdOutlineMoneyOffCsred className="text-app-main" />
                                 </div>
                                 <div className="text-[.625rem] text-app-main">Resolve Debt</div>
@@ -93,12 +94,26 @@ const SingleTransaction = () => {
                         }
 
                         {user?.role !== "staff" && 
-                        <div className="grid place-content-center gap-1" onClick={() => delete(singleTrx?.id)}>
-                            <div className="h-6 w-6 m-0 mx-auto rounded-full bg-red-50 grid place-content-center">
-                                <BiTrash className="text-red-500" />
+                        <>
+                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-sky-50" onClick={() => delete(singleTrx?.id)}>
+                                <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
+                                    <BiTrash className="text-sky-500" />
+                                </div>
+                                <div className="text-[.625rem] text-sky-500">Edit</div>
                             </div>
-                            <div className="text-[.625rem] text-red-500">Delete</div>
-                        </div>
+                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-red-50" onClick={() => delete(singleTrx?.id)}>
+                                <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
+                                    <BiTrash className="text-red-500" />
+                                </div>
+                                <div className="text-[.625rem] text-red-500">Delete</div>
+                            </div>
+                            <div className="grid place-content-center p-2 grid-cols-1 gap-1 rounded-md bg-green-50" onClick={() => delete(singleTrx?.id)}>
+                                <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
+                                    <BiTrash className="text-green-500" />
+                                </div>
+                                <div className="text-[.625rem] text-green-500">Receipt</div>
+                            </div>
+                        </>
                         }
                     </div>
 
@@ -113,15 +128,21 @@ const SingleTransaction = () => {
                             <p className="text-xs block pb-2">Sale ID</p>
                             <div className="text-xl capitalize font-bold">{singleTrx?.id}</div>
                         </div>
-                        <div className="">
-                            <p className="text-xs block pb-2">Customer Name</p>
-                            <div className="text-xl capitalize font-bold">{singleTrx?.customer_name}</div>
-                        </div>
 
-                        <div className="">
-                            <p className="text-xs block pb-2">Customer Phone</p>
-                            <div className="text-xl capitalize font-bold">{singleTrx?.customer_phone}</div>
-                        </div>
+                        {
+                            singleTrx?.type === 'sales' && 
+                            <>
+                                <div className="">
+                                    <p className="text-xs block pb-2">Customer Name</p>
+                                    <div className="text-xl capitalize font-bold">{singleTrx?.customer_name}</div>
+                                </div>
+
+                                <div className="">
+                                    <p className="text-xs block pb-2">Customer Phone</p>
+                                    <div className="text-xl capitalize font-bold">{singleTrx?.customer_phone}</div>
+                                </div>
+                            </>
+                        }
 
                         <div className="space-y-3">
                             <p className="text-xs block pb-2">Items Bought</p>
@@ -159,36 +180,47 @@ const SingleTransaction = () => {
                         </div>
 
 
-                        <div className="">
-                            <p className="text-xs block pb-2">Discount</p>
-                            <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.discount)}</div>
-                        </div>
+                        {
+                            singleTrx?.type === 'sales' ? 
+                            <>
+                                <div className="">
+                                    <p className="text-xs block pb-2">Discount</p>
+                                    <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.discount)}</div>
+                                </div>
 
-                        <div className="">
-                            <p className="text-xs block pb-2">Amount Paid</p>
-                            <div className="text-xl capitalize font-bold text-green-400">+ &#8358;{formatMoney(singleTrx?.amount)}</div>
-                        </div>
+                                <div className="">
+                                    <p className="text-xs block pb-2">Amount Paid</p>
+                                    <div className="text-xl capitalize font-bold text-green-400">+ &#8358;{formatMoney(singleTrx?.amount)}</div>
+                                </div>
 
-                        <div className="">
-                            <p className="text-xs block pb-2">Payment Method</p>
-                            <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.payment_method)}</div>
-                        </div>
+                                <div className="">
+                                    <p className="text-xs block pb-2">Payment Method</p>
+                                    <div className="text-xl capitalize font-bold">&#8358;{formatMoney(singleTrx?.payment_method)}</div>
+                                </div>
 
-                        <div className="">
-                            <p className="text-xs block pb-2">Amount Unpaid</p>
-                            <div className="text-xl capitalize font-bold text-red-400">- &#8358;{formatMoney(singleTrx?.balance)}</div>
-                        </div>
+                                <div className="">
+                                    <p className="text-xs block pb-2">Amount Unpaid</p>
+                                    <div className="text-xl capitalize font-bold text-red-400">- &#8358;{formatMoney(singleTrx?.balance)}</div>
+                                </div>
+                            </>
+                            :
+                            <div className="">
+                                <p className="text-xs block pb-2">Amount Spent</p>
+                                <div className="text-xl capitalize font-bold text-red-400">+ &#8358;{formatMoney(singleTrx?.amount)}</div>
+                            </div>
+
+                        }
 
                         <div className="">
                             <p className="text-xs block pb-2">Reference</p>
                             <div className="text-xl capitalize font-bold">{singleTrx?.reference}</div>
                         </div>
 
-                        <div className="">
-                            <Link to={`/receipt/${id}`} type="text" className="block p-3 bg-app-main text-white text-sm rounded-lg block w-full font-bold">
+                        {/* <div className="">
+                            <Link to={`/receipt/${id}`} type="text" className="p-3 bg-app-main text-white text-sm rounded-lg block w-full font-bold">
                                 Show Receipt
                             </Link>
-                        </div>
+                        </div> */}
 
                     </div>
 
