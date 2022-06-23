@@ -69,7 +69,7 @@ const SingleTransaction = () => {
                         title=""/>
 
                     <h1 className="font-bold">
-                        Transc.- {id}
+                        Single Transcation
                     </h1>
                 </div>
 
