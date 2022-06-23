@@ -85,7 +85,7 @@ const SingleTransaction = () => {
                     <div className="flex justify-end gap-5">
                         {parseInt(singleTrx?.balance) !== 0 &&
                             <div className="grid place-content-center gap-1" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
-                                <div className="h-6 w-6 m-0 rounded-full bg-purple-50 grid place-content-center">
+                                <div className="h-6 w-6 m-0 mx-auto rounded-full bg-purple-50 grid place-content-center">
                                     <MdOutlineMoneyOffCsred className="text-app-main" />
                                 </div>
                                 <div className="text-[.625rem] text-app-main">Resolve Debt</div>
@@ -94,11 +94,12 @@ const SingleTransaction = () => {
 
                         {user?.role !== "staff" && 
                         <div className="grid place-content-center gap-1" onClick={() => delete(singleTrx?.id)}>
-                            <div className="h-6 w-6 m-0 rounded-full bg-red-50 grid place-content-center">
+                            <div className="h-6 w-6 m-0 mx-auto rounded-full bg-red-50 grid place-content-center">
                                 <BiTrash className="text-red-500" />
                             </div>
                             <div className="text-[.625rem] text-red-500">Delete</div>
-                        </div>}
+                        </div>
+                        }
                     </div>
 
 
