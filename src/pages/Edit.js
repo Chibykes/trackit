@@ -239,6 +239,7 @@ const Edit = () => {
                                     <option value="">Choose a payment method</option>
                                     <option value="cash" selected={formData.payment_method === 'cash'}>Cash</option>
                                     <option value="bank transfer" selected={formData.payment_method === 'bank transfer'}>Bank Transfer</option>
+                                    <option value="pos" selected={formData.payment_method === 'pos'}>POS</option>
                                 </select>
                             </div>
 
