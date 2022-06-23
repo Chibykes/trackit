@@ -85,7 +85,7 @@ const SingleTransaction = () => {
                     </div> */}
                     <div className="grid grid-cols-4 justify-items-end gap-5">
                         {parseInt(singleTrx?.balance) !== 0 &&
-                            <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-purple-50" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
+                            <div className="grid place-content-center p-2 col-span-1 gap-1 rounded-md bg-purple-50" onClick={() => navigate(`/debts/${singleTrx.id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <MdOutlineMoneyOffCsred className="text-app-main" />
                                 </div>
@@ -95,19 +95,19 @@ const SingleTransaction = () => {
 
                         {user?.role !== "staff" && 
                         <>
-                            <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-sky-50" onClick={() => delete(singleTrx?.id)}>
+                            <div className="grid place-content-center p-2 col-span-1 gap-1 rounded-md bg-sky-50" onClick={() => delete(singleTrx?.id)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiEditAlt className="text-sky-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-sky-500">Edit</div>
                             </div>
-                            <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-red-50" onClick={() => delete(singleTrx?.id)}>
+                            <div className="grid place-content-center p-2 col-span-1 gap-1 rounded-md bg-red-50" onClick={() => delete(singleTrx?.id)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BiTrash className="text-red-500" />
                                 </div>
                                 <div className="font-bold text-center text-[.625rem] text-red-500">Delete</div>
                             </div>
-                            <div className="grid place-content-center p-2 cols-span-1 gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
+                            <div className="grid place-content-center p-2 col-span-1 gap-1 rounded-md bg-green-50" onClick={() => navigate(`/receipt/${id}`)}>
                                 <div className="h-6 w-6 m-0 mx-auto grid place-content-center">
                                     <BsReceipt className="text-green-500" />
                                 </div>
