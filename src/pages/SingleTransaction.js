@@ -206,7 +206,7 @@ const SingleTransaction = () => {
                             :
                             <div className="">
                                 <p className="text-xs block pb-2">Amount Spent</p>
-                                <div className="text-xl capitalize font-bold text-red-400">+ &#8358;{formatMoney(singleTrx?.amount)}</div>
+                                <div className="text-xl capitalize font-bold text-red-400">- &#8358;{formatMoney(singleTrx?.amount)}</div>
                             </div>
 
                         }
