@@ -72,7 +72,7 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
 
                         {user?.role !== 'staff' && 
                             <>
-                                <Link to="/new-staff" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
+                                <Link to="/staffs" className="flex justify-start items-center p-3 px-4 hover:bg-black text-black hover:text-white text-sm text-left rounded-lg">
                                     <HiUserGroup className="text-xl"/>
                                     <span className="pl-3 font-bold text-xs"> Staffs </span>
                                 </Link>

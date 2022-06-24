@@ -9,6 +9,7 @@ import Error from './pages/Error';
 import Transactions from './pages/Transactions';
 import Receipt from './pages/Receipt';
 import Scan from './pages/Scan';
+import NewStaff from './pages/NewStaff';
 import Staffs from './pages/Staffs';
 import Logout from './pages/Logout';
 import {AppProvider} from './context/AppContext';
@@ -32,7 +33,8 @@ function App() {
           <Route exact path="/edit/:id" element={<Edit />} />
           <Route path="/resolve-debts" element={<ResolveDebts />} />
           <Route path="/debts/:id" element={<Debts />} />
-          <Route path="/new-staff" element={<Staffs />} />
+          <Route path="/new-staff" element={<NewStaff />} />
+          <Route path="/staffs" element={<Staffs />} />
           <Route path="/scan" element={<Scan />} />
           <Route path="/receipt/:id" element={<Receipt />} />
           <Route path="/logout" element={<Logout />} />

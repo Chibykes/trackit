@@ -9,8 +9,6 @@ import formatDate from '../utils/formatDate';
 
 const Trx = ({ id, type, creator, customer_name, customer_phone, amount, balance, updatedAt: date, forDebts }) => {
 
-    console.log(forDebts);
-
     return(
         <>
             {forDebts ? 

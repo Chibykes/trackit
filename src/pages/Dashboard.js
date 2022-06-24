@@ -209,7 +209,7 @@ const Dashboard = (props) => {
                         
 
                         
-                            {user?.role !== "staff" && <Link to="/new-staff" className="flex justify-start items-center w-1/2 my-2 py-2
+                            {user?.role !== "staff" && <Link to="/staffs" className="flex justify-start items-center w-1/2 my-2 py-2
                                 hover:bg-gray-50 rounded-lg
                             ">
                                 <HiUserGroup className="text-app-main text-xl"/>
