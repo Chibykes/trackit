@@ -185,7 +185,7 @@ const Sales = () => {
                             <label className="text-xs font-bold block pb-2">
                                 Discount
                             </label>
-                            <input type="number" name="discount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                            <input type="number" name="discount" placeholder="Discount given to customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
                                 ref={discountRef}
                                 onChange={handleFormData}
                                 value={formData.discount}
@@ -206,7 +206,7 @@ const Sales = () => {
                             <label className="text-xs font-bold block pb-2">
                                 Payment Method
                             </label>
-                            <select name="payment_method" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
+                            <select name="payment_method" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full"
                                 onChange={handleFormData}
                                 value={formData.payment_method}
                             >

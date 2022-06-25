@@ -210,7 +210,7 @@ const Edit = () => {
                                 <label className="text-xs font-bold block pb-2">
                                     Discount
                                 </label>
-                                <input type="number" name="discount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize"
+                                <input type="number" name="discount" placeholder="Discount given to customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize"
                                     ref={discountRef}
                                     onChange={handleFormData}
                                     value={formData.discount}
@@ -232,7 +232,7 @@ const Edit = () => {
                                 <label className="text-xs font-bold block pb-2">
                                     Payment Method
                                 </label>
-                                <select name="payment_method" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize"
+                                <select name="payment_method" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize"
                                     onChange={handleFormData}
                                     value={formData.payment_method}
                                 >
@@ -271,7 +271,7 @@ const Edit = () => {
                                 <label className="text-xs font-bold block pb-2">
                                     Amount Spent
                                 </label>
-                                <input type="number" name="amount" placeholder="Amount Paid by the Customer" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize" 
+                                <input type="number" name="amount" placeholder="Total Amount Spent" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full capitalize" 
                                     ref={amountRef}
                                     onChange={handleFormData}
                                     value={formData.amount}
@@ -282,7 +282,7 @@ const Edit = () => {
                                 <label className="text-xs font-bold block pb-2">
                                     Transaction Description
                                 </label>
-                                <textarea type="text" name="description" placeholder="A short description about transaction" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full resize-none h-24"
+                                <textarea type="text" name="description" placeholder="A short description about the transaction" className="p-3 bg-gray-50 text-gray-600 text-sm rounded-lg block w-full resize-none h-24"
                                     onChange={handleFormData}
                                     value={formData.description}>
                                 </textarea>
