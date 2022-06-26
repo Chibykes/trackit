@@ -46,7 +46,6 @@ const Sales = () => {
         name: '',
         username: '',
         password: '',
-        role: 'staff'
     });
     
     const handleNewStaff = (e) => {
