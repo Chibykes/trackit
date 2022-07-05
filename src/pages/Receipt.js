@@ -255,51 +255,45 @@ const Receipt = () => {
                     </div>
 
                     <div className="">
-                        { receipt ?
-                            <div className="space-y-8 text-[.75rem] w-[90%] mx-auto">
+                        { receipt &&
+                            <div className="space-y-5 text-[.75rem] w-[90%] mx-auto">
 
                                 <div className="py-3">
                                     <div className="">
                                         <p className="text-lg text-center text-app-main font-bold uppercase">
                                             Victory Granite
                                         </p>
-                                        <p className="text-base text-center">
+                                        <p className="text-center">
                                             Shop XX Timer Market Ikot Ekpene Road Umuahia
                                         </p>
-                                        <p className="text-base text-center">
+                                        <p className="text-center">
                                             Tel: 08012345678, 08107873572
                                         </p>
 
-                                        <p className="text-base py-4 text text-center font-bold uppercase">
+                                        <p className="py-4 text text-center font-bold uppercase">
                                             SALES RECEIPT
                                         </p>
                                     </div>
-
-                                    {/* <div className="">
-                                        {receipt.id && <QRCode className="mx-auto" size={96} value={receipt.id} />}
-
-                                        <h1 className="pt-3 text-xl font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
-                                    </div> */}
                                 </div>
 
 
 
                                 <div className="">
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize">
+                                        <div className="flex flex-wrap justify-center items-center capitalize">
                                             <h1 className="w-1/3 font-bold">Customer Name</h1>
                                             <h1 className="w-2/3 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
                                         </div>
                                     }
 
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize">
+                                        <div className="flex flex-wrap justify-center items-center capitalize">
                                             <h1 className="w-1/3 font-bold">Customer Phone</h1>
                                             <h1 className="w-2/3 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
                                         </div>
                                     }
                                 
-                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize">
+                                    <div className="flex flex-wrap justify-center items-center capitalize">
                                         <h1 className="w-1/3 font-bold">Date</h1>
                                         <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
                                     </div>
@@ -335,15 +329,15 @@ const Receipt = () => {
                                         </table>
 
 
-                                        <div className="grid gap-4 pt-3">
+                                        <div className="grid gap-1 pt-5">
                                             <div className="flex justify-between items-center">
-                                                <span className="font-bold">Discount:</span>
+                                                <span className="">Discount:</span>
                                                 <div className="text-black text-center font-bold">
                                                     &#8358; {formatMoney(receipt.discount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="font-bold">Total Payable:</span>
+                                                <span className="">Total Payable:</span>
                                                 <div className="text-center font-bold">
                                                 &#8358; {formatMoney(
                                                     receipt.sales.reduce((acc, curr) => {
@@ -353,13 +347,13 @@ const Receipt = () => {
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="font-bold">Amount Paid:</span>
+                                                <span className="">Amount Paid:</span>
                                                 <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.amount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="font-bold">Amount Unpaid:</span>
+                                                <span className="">Amount Unpaid:</span>
                                                 <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.balance)}
                                                 </div>
@@ -369,6 +363,11 @@ const Receipt = () => {
 
                                     </div>}
 
+                                    <div className="">
+                                        {receipt.id && <QRCode className="mx-auto" size={30} value={receipt.id} />}
+                                        <h1 className="pt-3 font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
+                                    </div>
+
                                     <p className="text-center text-gray-400 pt-5 w-full">
                                         Please Note: No refund of money after payments.<br />
                                         We sincerely appreciate your patronage.
@@ -376,13 +375,6 @@ const Receipt = () => {
 
                                 </div>
 
-                            </div>
-                            :
-                            <div className="grid place-content-center py-16">
-                                <AiOutlineFileSearch className="text-black text-3xl text-center w-full" />
-                                <p className="text-black text-center text-xs font-bold pt-3">
-                                    No Transaction <br/> Found
-                                </p>
                             </div>
                         }
 
