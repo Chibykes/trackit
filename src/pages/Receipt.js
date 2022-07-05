@@ -363,7 +363,7 @@ const Receipt = () => {
 
                                     </div>}
 
-                                    <div className="">
+                                    <div className="py-3">
                                         {receipt.id && <QRCode className="mx-auto" size={30} value={receipt.id} />}
                                         <h1 className="pt-3 font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
                                     </div>
