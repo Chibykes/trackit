@@ -256,7 +256,7 @@ const Receipt = () => {
 
                     <div className="">
                         { receipt ?
-                            <div className="space-y-3 text-[.625rem]">
+                            <div className="space-y-3 text-[.75rem]">
 
                                 <div className="py-3">
                                     <div className="">
@@ -299,10 +299,12 @@ const Receipt = () => {
                                         <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
                                     </div>
 
-                                    <hr className="divide-zinc-700"/>
+                                    {/* <hr className="divide-zinc-700"/> */}
+
+                                    <p className="text-bold text-center">Items Bought</p>
 
                                     {receipt.sales && 
-                                    <div className="space-y-3">
+                                    <div className="py-3">
                                         <table className="">
                                             <thead>
                                                 <tr>
@@ -336,6 +338,16 @@ const Receipt = () => {
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
+                                                <span className="font-bold">Total Payable:</span>
+                                                <div className="text-center font-bold">
+                                                &#8358; {formatMoney(
+                                                    receipt.sales.reduce((acc, curr) => {
+                                                        return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
+                                                    }, 0) - (parseInt(receipt?.discount || 0))
+                                                )}
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between items-center">
                                                 <span className="font-bold">Amount Paid:</span>
                                                 <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.amount)}
@@ -347,19 +359,6 @@ const Receipt = () => {
                                                     &#8358; {formatMoney(receipt.balance)}
                                                 </div>
                                             </div>
-
-                                            <hr className="divide-zinc-700"/>
-                                            <div className="flex justify-between items-center">
-                                                <span className="font-bold">Final Amount Payable:</span>
-                                                <div className="text-app-main text-2xl text-center font-bold">
-                                                    &#8358; {formatMoney(
-                                                        receipt.sales.reduce((acc, curr) => {
-                                                            return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
-                                                        }, 0) - (parseInt(receipt?.discount || 0))
-                                                        )}
-                                                </div>
-                                            </div>
-                                            <hr className="divide-zinc-700"/>
                                         </div>
 
 
@@ -369,20 +368,6 @@ const Receipt = () => {
                                         Please Note: No refund of money after payments.<br />
                                         We sincerely appreciate your patronage.
                                     </p>
-                                
-                                    <div className="flex flex-wrap justify-center items-center py-8 text-xs" style={{textTransform: 'capitalize'}}>
-                                        <button type="" 
-                                            className="font-bold text-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto"
-                                            onClick={() => window.print()}
-                                        >
-                                            <IoPrint className="mr-3 text-sm text-app-main" />
-                                            Print
-                                        </button>
-                                        {receipt.customer_phone && <a target="_blank" rel="noreferrer" href={`https://api.whatsapp.com/send/?phone=${receipt.customer_phone.replace(/^0/, '234')}&text=Hi, Here is your receipt from Victory Granite&app_absent=0`} type="" className="font-bold text-white bg-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto">
-                                            <IoIosSend className="mr-3 text-sm text-white" />
-                                            Share
-                                        </a>}
-                                    </div>
 
                                 </div>
 
