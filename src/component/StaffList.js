@@ -1,8 +1,5 @@
 import { ImUsers } from 'react-icons/im';
 import { RiDeleteBin6Line } from 'react-icons/ri';
-import {Link} from 'react-router-dom';
-import formatMoney from '../utils/formatMoney';
-import formatDate from '../utils/formatDate';
 
 const StaffList = ({ id, username, name, deleteStaff }) => {
 

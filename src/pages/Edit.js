@@ -1,5 +1,5 @@
 import {useState, useContext, useRef, useEffect} from 'react';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
 
 import { AppContext } from '../context/AppContext';

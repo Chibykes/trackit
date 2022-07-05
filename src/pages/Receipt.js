@@ -19,7 +19,7 @@ const Receipt = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { url, user, setUser, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
+    const { url, setUser, loadSplash, setLoadSplash, Toast } = useContext(AppContext);
     const [receipt, setReceipt] = useState({ });
     const [showSidebar, setShowSidebar] = useState(false);
 

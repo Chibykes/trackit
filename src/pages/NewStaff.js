@@ -1,8 +1,8 @@
 import {useState, useContext, useRef} from 'react';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {HiMenuAlt1} from 'react-icons/hi';
 
-import {FilePond, File, registerPlugin} from 'react-filepond';
+import {FilePond, registerPlugin} from 'react-filepond';
 import 'filepond/dist/filepond.min.css';
 
 // Import the Image EXIF Orientation and Image Preview plugins
