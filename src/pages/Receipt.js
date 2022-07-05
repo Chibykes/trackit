@@ -256,7 +256,7 @@ const Receipt = () => {
 
                     <div className="">
                         { receipt &&
-                            <div className="space-y-5 text-[.75rem] w-[90%] mx-auto">
+                            <div className="space-y-3 text-[.75rem] w-[90%] mx-auto">
 
                                 <div className="py-3">
                                     <div className="">
@@ -279,32 +279,22 @@ const Receipt = () => {
 
 
                                 <div className="">
-                                    {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center capitalize">
-                                            <h1 className="w-1/3 font-bold">Customer Name</h1>
-                                            <h1 className="w-2/3 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
-                                        </div>
-                                    }
+                                    <p className="w-1/3 font-bold">Customer</p>
+                                    <p className="">
+                                        <strong>Name: </strong> {receipt.customer_name} 
+                                        <strong> Phone: </strong> {receipt.customer_phone}
+                                    </p>
+                                    <p className="w-2/3 text-right">
+                                        <strong>Date: </strong> 
+                                        {receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}
+                                    </p>
 
-                                    {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center capitalize">
-                                            <h1 className="w-1/3 font-bold">Customer Phone</h1>
-                                            <h1 className="w-2/3 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
-                                        </div>
-                                    }
-                                
-                                    <div className="flex flex-wrap justify-center items-center capitalize">
-                                        <h1 className="w-1/3 font-bold">Date</h1>
-                                        <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
-                                    </div>
-
-                                    {/* <hr className="divide-zinc-700"/> */}
 
                                     <p className="font-bold text-center pt-5">Items Bought</p>
 
                                     {receipt.sales && 
                                     <div className="py-5">
-                                        <table className="">
+                                        <table className="overflow-hidden rounded-sm pb-5">
                                             <thead>
                                                 <tr className="bg-app-main text-white">
                                                     <th className="p-1">S/N</th>
@@ -331,13 +321,13 @@ const Receipt = () => {
 
                                         <div className="grid gap-1 pt-5">
                                             <div className="flex justify-between items-center">
-                                                <span className="">Discount:</span>
+                                                <span className="text-[.625rem]">Discount:</span>
                                                 <div className="text-black text-center font-bold">
                                                     &#8358; {formatMoney(receipt.discount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="">Total Payable:</span>
+                                                <span className="text-[.625rem]">Total Payable:</span>
                                                 <div className="text-center font-bold">
                                                 &#8358; {formatMoney(
                                                     receipt.sales.reduce((acc, curr) => {
@@ -347,13 +337,13 @@ const Receipt = () => {
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="">Amount Paid:</span>
+                                                <span className="text-[.625rem]">Amount Paid:</span>
                                                 <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.amount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="">Amount Unpaid:</span>
+                                                <span className="text-[.625rem]">Amount Unpaid:</span>
                                                 <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.balance)}
                                                 </div>
@@ -364,7 +354,7 @@ const Receipt = () => {
                                     </div>}
 
                                     <div className="py-3">
-                                        {receipt.id && <QRCode className="mx-auto" size={30} value={receipt.id} />}
+                                        {receipt.id && <QRCode className="mx-auto" size={50} value={receipt.id} />}
                                         <h1 className="pt-3 font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
                                     </div>
 
