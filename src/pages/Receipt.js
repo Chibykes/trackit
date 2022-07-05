@@ -293,34 +293,34 @@ const Receipt = () => {
 
                                 <div className="">
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
-                                            <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Customer Name</h1>
-                                            <h1 className="text-sm w-1/2 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
+                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                            <h1 className="w-1/3 font-bold">Customer Name</h1>
+                                            <h1 className="w-2/3 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
                                         </div>
                                     }
 
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
-                                            <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Customer Phone</h1>
-                                            <h1 className="text-sm w-1/2 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
+                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                            <h1 className="w-1/3 font-bold">Customer Phone</h1>
+                                            <h1 className="w-2/3 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
                                         </div>
                                     }
                                 
-                                    <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
-                                        <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Description</h1>
-                                        <h1 className="text-sm w-1/2 text-right">{receipt.description ? receipt.description : '-'}</h1>
+                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                        <h1 className="w-1/3 font-bold">Description</h1>
+                                        <h1 className="w-2/3 text-right">{receipt.description ? receipt.description : '-'}</h1>
                                     </div>
                                 
-                                    <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
-                                        <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Date</h1>
-                                        <h1 className="text-sm w-1/2 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
+                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                        <h1 className="w-1/3 font-bold">Date</h1>
+                                        <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
                                     </div>
 
                                     <hr className="divide-zinc-700"/>
 
                                     {receipt.sales && 
                                     <div className="space-y-3">
-                                        <table>
+                                        <table className="text-[.4rem]">
                                             <thead>
                                                 <tr>
                                                     <th>S/N</th>
@@ -347,27 +347,27 @@ const Receipt = () => {
 
                                         <div className="grid gap-4 pt-3">
                                             <div className="flex justify-between items-center">
-                                                <span className="text-xs font-bold">Discount:</span>
+                                                <span className="font-bold">Discount:</span>
                                                 <div className="text-black text-[16px] text-center font-bold">
                                                     &#8358; {formatMoney(receipt.discount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="text-xs font-bold">Amount Paid:</span>
-                                                <div className="text-green-400 text-[16px] text-center font-bold">
+                                                <span className="font-bold">Amount Paid:</span>
+                                                <div className="text-[16px] text-center font-bold">
                                                     &#8358; {formatMoney(receipt.amount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
-                                                <span className="text-xs font-bold">Amount Unpaid:</span>
-                                                <div className="text-red-400 text-[16px] text-center font-bold">
+                                                <span className="font-bold">Amount Unpaid:</span>
+                                                <div className="text-[16px] text-center font-bold">
                                                     &#8358; {formatMoney(receipt.balance)}
                                                 </div>
                                             </div>
 
                                             <hr className="divide-zinc-700"/>
                                             <div className="flex justify-between items-center">
-                                                <span className="text-xs font-bold">Final Amount Payable:</span>
+                                                <span className="font-bold">Final Amount Payable:</span>
                                                 <div className="text-app-main text-2xl text-center font-bold">
                                                     &#8358; {formatMoney(
                                                         receipt.sales.reduce((acc, curr) => {
@@ -382,10 +382,7 @@ const Receipt = () => {
 
                                     </div>}
 
-                                    <p className="text-center text-gray-400 pt-5 w-full"
-                                        style={
-                                            {fontSize: '.625rem'}
-                                    }>
+                                    <p className="text-center text-gray-400 pt-5 w-full">
                                         Please Note: No refund of money after payments.<br />
                                         We sincerely appreciate your patronage.
                                     </p>
