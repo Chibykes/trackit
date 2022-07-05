@@ -256,11 +256,11 @@ const Receipt = () => {
 
                     <div className="hidden print:block">
                         { receipt &&
-                            <div className="space-y-3 text-[.65rem] leading-3 w-[90%] mx-auto">
+                            <div className="space-y-3 text-[.625rem] leading-3 w-[92%] mx-auto">
 
                                 <div className="pt-2">
                                     <div className="">
-                                        <p className="text-lg text-center text-app-main font-bold uppercase">
+                                        <p className="text-lg text-center font-bold uppercase">
                                             Victory Granite
                                         </p>
                                         <p className="text-center">
@@ -356,11 +356,11 @@ const Receipt = () => {
                                     </div>}
 
                                     <div className="pt-3">
-                                        {receipt.id && <QRCode className="mx-auto" size={50} value={receipt.id} />}
-                                        <h1 className="pt-3 font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
+                                        {receipt.id && <QRCode className="mx-auto" size={65} value={receipt.id} />}
+                                        <h1 className="pt-3 font-bold text-center">{receipt.id && receipt.id}</h1>
                                     </div>
 
-                                    <p className="text-center text-gray-400 pt-3 w-full">
+                                    <p className="text-[.625rem] text-center pt-3 w-full">
                                         Please Note: No refund of money after payments.<br />
                                         We sincerely appreciate your patronage.
                                     </p>
