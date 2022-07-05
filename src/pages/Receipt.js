@@ -256,62 +256,45 @@ const Receipt = () => {
 
                     <div className="">
                         { receipt ?
-                            <div className="space-y-3" >
+                            <div className="space-y-3 text-[.625rem]">
 
-                                {/* <div className="flex justify-end gap-5">
-                                    {parseInt(receipt?.balance) !== 0 && 
-                                        <div className="print:hidden flex justify-end">
-                                            <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-app-main flex justify-between items-center rounded-md active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
-                                                <span>Resolve Debt</span>
-                                            </div>
-                                        </div>
-                                    }
-
-                                    {user?.role !== "staff" && <div className="print:hidden flex justify-end">
-                                        <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-red-400 flex justify-between items-center rounded-md active:ring-red-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
-                                            <span>Delete</span>
-                                        </div>
-                                    </div>}
-                                </div> */}
-
-                                <div className="py-3 flex justify-between items-center">
+                                <div className="py-3">
                                     <div className="">
-                                        <img src={vgranite} alt="" className="w-14 h-14"/>
-                                        <p className="text-lg font-bold uppercase">
-                                            Victory <br /> Granite
+                                        <p className="text-lg text-center font-bold uppercase">
+                                            Victory Granite
                                         </p>
                                     </div>
 
-                                    <div className="">
+                                    {/* <div className="">
                                         {receipt.id && <QRCode className="mx-auto" size={96} value={receipt.id} />}
 
                                         <h1 className="pt-3 text-xl font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
-                                    </div>
+                                    </div> */}
                                 </div>
 
 
 
                                 <div className="">
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize">
                                             <h1 className="w-1/3 font-bold">Customer Name</h1>
                                             <h1 className="w-2/3 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
                                         </div>
                                     }
 
                                     {receipt.type === 'sales' && 
-                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                        <div className="flex flex-wrap justify-center items-center py-1 capitalize">
                                             <h1 className="w-1/3 font-bold">Customer Phone</h1>
                                             <h1 className="w-2/3 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
                                         </div>
                                     }
                                 
-                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize">
                                         <h1 className="w-1/3 font-bold">Description</h1>
                                         <h1 className="w-2/3 text-right">{receipt.description ? receipt.description : '-'}</h1>
                                     </div>
                                 
-                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize text-[.4rem]">
+                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize">
                                         <h1 className="w-1/3 font-bold">Date</h1>
                                         <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
                                     </div>
@@ -320,14 +303,14 @@ const Receipt = () => {
 
                                     {receipt.sales && 
                                     <div className="space-y-3">
-                                        <table className="text-[.4rem]">
+                                        <table className="">
                                             <thead>
                                                 <tr>
                                                     <th>S/N</th>
                                                     <th>Item</th>
-                                                    <th>Qty</th>
-                                                    <th>Price(per)</th>
-                                                    <th>Total</th>
+                                                    <th className="text-right">Qty</th>
+                                                    <th className="text-right">Price(per)</th>
+                                                    <th className="text-right">Total</th>
                                                 </tr>
                                             </thead>
 
@@ -336,9 +319,9 @@ const Receipt = () => {
                                                     <tr key={index}>
                                                         <td className="w-[5%]">{index+1}</td>
                                                         <td className="w-[40%] text-capitalize">{product}</td>
-                                                        <td className="w-[5%] text-capitalize">{qty}</td>
-                                                        <td className="w-[20%] text-capitalize">{formatMoney(parseInt(price || 0))}</td>
-                                                        <td className="w-[20%] text-capitalize">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
+                                                        <td className="w-[5%] text-capitalize text-right">{qty}</td>
+                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0))}</td>
+                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
                                                     </tr>
                                                 )}
                                             </tbody>
@@ -348,19 +331,19 @@ const Receipt = () => {
                                         <div className="grid gap-4 pt-3">
                                             <div className="flex justify-between items-center">
                                                 <span className="font-bold">Discount:</span>
-                                                <div className="text-black text-[16px] text-center font-bold">
+                                                <div className="text-black text-center font-bold">
                                                     &#8358; {formatMoney(receipt.discount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
                                                 <span className="font-bold">Amount Paid:</span>
-                                                <div className="text-[16px] text-center font-bold">
+                                                <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.amount)}
                                                 </div>
                                             </div>
                                             <div className="flex justify-between items-center">
                                                 <span className="font-bold">Amount Unpaid:</span>
-                                                <div className="text-[16px] text-center font-bold">
+                                                <div className="text-center font-bold">
                                                     &#8358; {formatMoney(receipt.balance)}
                                                 </div>
                                             </div>
