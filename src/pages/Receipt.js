@@ -256,7 +256,7 @@ const Receipt = () => {
 
                     <div className="hidden print:block">
                         { receipt &&
-                            <div className="space-y-5 text-[.75rem] w-[90%] mx-auto">
+                            <div className="space-y-5 text-[.65rem] w-[90%] mx-auto">
 
                                 <div className="pt-3">
                                     <div className="">
