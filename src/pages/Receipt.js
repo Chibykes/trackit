@@ -254,6 +254,170 @@ const Receipt = () => {
 
                     </div>
 
+                    <div className="">
+                        { receipt ?
+                            <div className="space-y-3" >
+
+                                {/* <div className="flex justify-end gap-5">
+                                    {parseInt(receipt?.balance) !== 0 && 
+                                        <div className="print:hidden flex justify-end">
+                                            <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-app-main flex justify-between items-center rounded-md active:ring-purple-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
+                                                <span>Resolve Debt</span>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    {user?.role !== "staff" && <div className="print:hidden flex justify-end">
+                                        <div className="font-bold text-xs text-white space-x-1 p-1 px-3 bg-red-400 flex justify-between items-center rounded-md active:ring-red-400 ring-transparent ring-2 ring-offset-2 cursor-pointer" onClick={() => navigate(`/debts/${receipt.id}`)}>
+                                            <span>Delete</span>
+                                        </div>
+                                    </div>}
+                                </div> */}
+
+                                <div className="py-3 flex justify-between items-center">
+                                    <div className="">
+                                        <img src={vgranite} alt="" className="w-14 h-14"/>
+                                        <p className="text-lg font-bold uppercase">
+                                            Victory <br /> Granite
+                                        </p>
+                                    </div>
+
+                                    <div className="">
+                                        {receipt.id && <QRCode className="mx-auto" size={96} value={receipt.id} />}
+
+                                        <h1 className="pt-3 text-xl font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="">
+                                    {receipt.type === 'sales' && 
+                                        <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
+                                            <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Customer Name</h1>
+                                            <h1 className="text-sm w-1/2 text-right">{receipt.customer_name ? receipt.customer_name : '-'}</h1>
+                                        </div>
+                                    }
+
+                                    {receipt.type === 'sales' && 
+                                        <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
+                                            <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Customer Phone</h1>
+                                            <h1 className="text-sm w-1/2 text-right">{receipt.customer_phone ? receipt.customer_phone : '-'}</h1>
+                                        </div>
+                                    }
+                                
+                                    <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
+                                        <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Description</h1>
+                                        <h1 className="text-sm w-1/2 text-right">{receipt.description ? receipt.description : '-'}</h1>
+                                    </div>
+                                
+                                    <div className="flex flex-wrap justify-center items-center py-1" style={{textTransform: 'capitalize'}}>
+                                        <h1 className="w-1/2 font-bold" style={{ fontSize: '.625rem' }}>Date</h1>
+                                        <h1 className="text-sm w-1/2 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
+                                    </div>
+
+                                    <hr className="divide-zinc-700"/>
+
+                                    {receipt.sales && 
+                                    <div className="space-y-3">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>S/N</th>
+                                                    <th>Item</th>
+                                                    <th>Qty</th>
+                                                    <th>Price(per)</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                {receipt.sales.map(({ product, qty, price }, index) =>
+                                                    <tr key={index}>
+                                                        <td className="w-[5%]">{index+1}</td>
+                                                        <td className="w-[40%] text-capitalize">{product}</td>
+                                                        <td className="w-[5%] text-capitalize">{qty}</td>
+                                                        <td className="w-[20%] text-capitalize">{formatMoney(parseInt(price || 0))}</td>
+                                                        <td className="w-[20%] text-capitalize">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
+                                                    </tr>
+                                                )}
+                                            </tbody>
+                                        </table>
+
+
+                                        <div className="grid gap-4 pt-3">
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-xs font-bold">Discount:</span>
+                                                <div className="text-black text-[16px] text-center font-bold">
+                                                    &#8358; {formatMoney(receipt.discount)}
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-xs font-bold">Amount Paid:</span>
+                                                <div className="text-green-400 text-[16px] text-center font-bold">
+                                                    &#8358; {formatMoney(receipt.amount)}
+                                                </div>
+                                            </div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-xs font-bold">Amount Unpaid:</span>
+                                                <div className="text-red-400 text-[16px] text-center font-bold">
+                                                    &#8358; {formatMoney(receipt.balance)}
+                                                </div>
+                                            </div>
+
+                                            <hr className="divide-zinc-700"/>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-xs font-bold">Final Amount Payable:</span>
+                                                <div className="text-app-main text-2xl text-center font-bold">
+                                                    &#8358; {formatMoney(
+                                                        receipt.sales.reduce((acc, curr) => {
+                                                            return acc = acc + (parseInt(curr.price || 0) * parseInt(curr.qty || 0));
+                                                        }, 0) - (parseInt(receipt?.discount || 0))
+                                                        )}
+                                                </div>
+                                            </div>
+                                            <hr className="divide-zinc-700"/>
+                                        </div>
+
+
+                                    </div>}
+
+                                    <p className="text-center text-gray-400 pt-5 w-full"
+                                        style={
+                                            {fontSize: '.625rem'}
+                                    }>
+                                        Please Note: No refund of money after payments.<br />
+                                        We sincerely appreciate your patronage.
+                                    </p>
+                                
+                                    <div className="flex flex-wrap justify-center items-center py-8 text-xs" style={{textTransform: 'capitalize'}}>
+                                        <button type="" 
+                                            className="font-bold text-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto"
+                                            onClick={() => window.print()}
+                                        >
+                                            <IoPrint className="mr-3 text-sm text-app-main" />
+                                            Print
+                                        </button>
+                                        {receipt.customer_phone && <a target="_blank" rel="noreferrer" href={`https://api.whatsapp.com/send/?phone=${receipt.customer_phone.replace(/^0/, '234')}&text=Hi, Here is your receipt from Victory Granite&app_absent=0`} type="" className="font-bold text-white bg-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto">
+                                            <IoIosSend className="mr-3 text-sm text-white" />
+                                            Share
+                                        </a>}
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            :
+                            <div className="grid place-content-center py-16">
+                                <AiOutlineFileSearch className="text-black text-3xl text-center w-full" />
+                                <p className="text-black text-center text-xs font-bold pt-3">
+                                    No Transaction <br/> Found
+                                </p>
+                            </div>
+                        }
+
+                    </div>
+
                 </div>
             </div>
         </>
