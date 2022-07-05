@@ -77,7 +77,7 @@ const Receipt = () => {
                     </RTP>  */}
 
 
-                    <div className="">
+                    <div className="print:hidden">
                         { receipt ?
                             <div className="space-y-3" >
 
@@ -254,11 +254,11 @@ const Receipt = () => {
 
                     </div>
 
-                    <div className="">
+                    <div className="hidden print:block">
                         { receipt &&
-                            <div className="space-y-3 text-[.75rem] w-[90%] mx-auto">
+                            <div className="space-y-5 text-[.75rem] w-[90%] mx-auto">
 
-                                <div className="py-3">
+                                <div className="pt-3">
                                     <div className="">
                                         <p className="text-lg text-center text-app-main font-bold uppercase">
                                             Victory Granite
@@ -270,7 +270,7 @@ const Receipt = () => {
                                             Tel: 08012345678, 08107873572
                                         </p>
 
-                                        <p className="py-4 text text-center font-bold uppercase">
+                                        <p className="pt-4 text text-center font-bold uppercase">
                                             SALES RECEIPT
                                         </p>
                                     </div>
@@ -279,12 +279,14 @@ const Receipt = () => {
 
 
                                 <div className="">
-                                    <p className="w-1/3 font-bold">Customer</p>
-                                    <p className="">
-                                        <strong>Name: </strong> {receipt.customer_name} 
-                                        <strong> Phone: </strong> {receipt.customer_phone}
+                                    <p className="font-bold text-center">Customer</p>
+                                    <p className="text-center">
+                                        <strong>Name: </strong>
+                                        <span className="capitalize">{receipt.customer_name} </span>
+                                        <strong> Phone: </strong>
+                                        <span className="capitalize"> {receipt.customer_phone}</span>
                                     </p>
-                                    <p className="w-2/3 text-right">
+                                    <p className="text-center">
                                         <strong>Date: </strong> 
                                         {receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}
                                     </p>
@@ -319,7 +321,7 @@ const Receipt = () => {
                                         </table>
 
 
-                                        <div className="grid gap-1 pt-5">
+                                        <div className="grid gap-1 pt-6">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-[.625rem]">Discount:</span>
                                                 <div className="text-black text-center font-bold">
