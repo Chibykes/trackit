@@ -258,7 +258,7 @@ const Receipt = () => {
                         { receipt &&
                             <div className="space-y-3 text-[.625rem] leading-3 w-[92%] mx-auto">
 
-                                <div className="pt-2">
+                                <div className="">
                                     <div className="">
                                         <p className="text-lg text-center font-bold uppercase">
                                             Victory Granite
@@ -356,7 +356,7 @@ const Receipt = () => {
                                     </div>}
 
                                     <div className="pt-3">
-                                        {receipt.id && <QRCode className="mx-auto" size={65} value={receipt.id} />}
+                                        {receipt.id && <QRCode className="mx-auto" size={60} value={receipt.id} />}
                                         <h1 className="pt-3 font-bold text-center">{receipt.id && receipt.id}</h1>
                                     </div>
 
