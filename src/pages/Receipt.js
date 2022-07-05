@@ -256,17 +256,17 @@ const Receipt = () => {
 
                     <div className="">
                         { receipt ?
-                            <div className="space-y-8 text-[.75rem] w-[90%]">
+                            <div className="space-y-8 text-[.75rem] w-[90%] mx-auto">
 
                                 <div className="py-3">
                                     <div className="">
                                         <p className="text-lg text-center text-app-main font-bold uppercase">
                                             Victory Granite
                                         </p>
-                                        <p className="text-base text-center uppercase">
+                                        <p className="text-base text-center">
                                             Shop XX Timer Market Ikot Ekpene Road Umuahia
                                         </p>
-                                        <p className="text-base text-center uppercase">
+                                        <p className="text-base text-center">
                                             Tel: 08012345678, 08107873572
                                         </p>
 
@@ -306,7 +306,7 @@ const Receipt = () => {
 
                                     {/* <hr className="divide-zinc-700"/> */}
 
-                                    <p className="text-bold text-center">Items Bought</p>
+                                    <p className="font-bold text-center pt-5">Items Bought</p>
 
                                     {receipt.sales && 
                                     <div className="py-5">
@@ -323,7 +323,7 @@ const Receipt = () => {
 
                                             <tbody>
                                                 {receipt.sales.map(({ product, qty, price }, index) =>
-                                                    <tr key={index} className={(index+1)%2 === 0 && `bg-app-light`}>
+                                                    <tr key={index} className={(index+1)%2 === 0 && `bg-purple-50`}>
                                                         <td className="w-[5%] p-1">{index+1}</td>
                                                         <td className="w-[40%] p-1 text-capitalize">{product}</td>
                                                         <td className="w-[5%] p-1 text-capitalize text-right">{qty}</td>
