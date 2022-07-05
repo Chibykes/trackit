@@ -256,12 +256,22 @@ const Receipt = () => {
 
                     <div className="">
                         { receipt ?
-                            <div className="space-y-3 text-[.75rem]">
+                            <div className="space-y-8 text-[.75rem] w-[90%]">
 
                                 <div className="py-3">
                                     <div className="">
-                                        <p className="text-lg text-center font-bold uppercase">
+                                        <p className="text-lg text-center text-app-main font-bold uppercase">
                                             Victory Granite
+                                        </p>
+                                        <p className="text-base text-center uppercase">
+                                            Shop XX Timer Market Ikot Ekpene Road Umuahia
+                                        </p>
+                                        <p className="text-base text-center uppercase">
+                                            Tel: 08012345678, 08107873572
+                                        </p>
+
+                                        <p className="text-base py-4 text text-center font-bold uppercase">
+                                            SALES RECEIPT
                                         </p>
                                     </div>
 
@@ -290,11 +300,6 @@ const Receipt = () => {
                                     }
                                 
                                     <div className="flex flex-wrap justify-center items-center py-1 capitalize">
-                                        <h1 className="w-1/3 font-bold">Description</h1>
-                                        <h1 className="w-2/3 text-right">{receipt.description ? receipt.description : '-'}</h1>
-                                    </div>
-                                
-                                    <div className="flex flex-wrap justify-center items-center py-1 capitalize">
                                         <h1 className="w-1/3 font-bold">Date</h1>
                                         <h1 className="w-2/3 text-right">{receipt.createdAt ? formatDate(receipt.createdAt, false) : '-'}</h1>
                                     </div>
@@ -304,26 +309,26 @@ const Receipt = () => {
                                     <p className="text-bold text-center">Items Bought</p>
 
                                     {receipt.sales && 
-                                    <div className="py-3">
+                                    <div className="py-5">
                                         <table className="">
                                             <thead>
-                                                <tr>
-                                                    <th>S/N</th>
-                                                    <th>Item</th>
-                                                    <th className="text-right">Qty</th>
-                                                    <th className="text-right">Price(per)</th>
-                                                    <th className="text-right">Total</th>
+                                                <tr className="bg-app-main text-white">
+                                                    <th className="p-1">S/N</th>
+                                                    <th className="p-1">Item</th>
+                                                    <th className="text-right p-1">Qty</th>
+                                                    <th className="text-right p-1">Price(per)</th>
+                                                    <th className="text-right p-1">Total</th>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
                                                 {receipt.sales.map(({ product, qty, price }, index) =>
-                                                    <tr key={index}>
-                                                        <td className="w-[5%]">{index+1}</td>
-                                                        <td className="w-[40%] text-capitalize">{product}</td>
-                                                        <td className="w-[5%] text-capitalize text-right">{qty}</td>
-                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0))}</td>
-                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
+                                                    <tr key={index} className={(index+1)%2 === 0 && `bg-app-light`}>
+                                                        <td className="w-[5%] p-1">{index+1}</td>
+                                                        <td className="w-[40%] p-1 text-capitalize">{product}</td>
+                                                        <td className="w-[5%] p-1 text-capitalize text-right">{qty}</td>
+                                                        <td className="w-[25%] p-1 text-capitalize text-right">{formatMoney(parseInt(price || 0))}</td>
+                                                        <td className="w-[25%] p-1 text-capitalize text-right">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
                                                     </tr>
                                                 )}
                                             </tbody>
