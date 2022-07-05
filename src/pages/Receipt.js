@@ -256,9 +256,9 @@ const Receipt = () => {
 
                     <div className="hidden print:block">
                         { receipt &&
-                            <div className="space-y-5 text-[.65rem] w-[90%] mx-auto">
+                            <div className="space-y-3 text-[.65rem] leading-3 w-[90%] mx-auto">
 
-                                <div className="pt-3">
+                                <div className="pt-2">
                                     <div className="">
                                         <p className="text-lg text-center text-app-main font-bold uppercase">
                                             Victory Granite
@@ -292,13 +292,13 @@ const Receipt = () => {
                                     </p>
 
 
-                                    <p className="font-bold text-center pt-5">Items Bought</p>
+                                    <p className="font-bold text-center pt-3">Items Bought</p>
 
                                     {receipt.sales && 
-                                    <div className="py-5">
+                                    <div className="py-3">
                                         <table className="overflow-hidden rounded-sm pb-5">
                                             <thead>
-                                                <tr className="bg-app-main text-white">
+                                                <tr className="bg-black text-white">
                                                     <th className="p-1">S/N</th>
                                                     <th className="p-1">Item</th>
                                                     <th className="text-right p-1">Qty</th>
@@ -310,18 +310,18 @@ const Receipt = () => {
                                             <tbody>
                                                 {receipt.sales.map(({ product, qty, price }, index) =>
                                                     <tr key={index} className={(index+1)%2 === 0 && `bg-purple-50`}>
-                                                        <td className="w-[5%] p-1">{index+1}</td>
-                                                        <td className="w-[40%] p-1 text-capitalize">{product}</td>
-                                                        <td className="w-[5%] p-1 text-capitalize text-right">{qty}</td>
-                                                        <td className="w-[25%] p-1 text-capitalize text-right">{formatMoney(parseInt(price || 0))}</td>
-                                                        <td className="w-[25%] p-1 text-capitalize text-right">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
+                                                        <td className="w-[5%]">{index+1}</td>
+                                                        <td className="w-[40%] text-capitalize">{product}</td>
+                                                        <td className="w-[5%] text-capitalize text-right">{qty}</td>
+                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0))}</td>
+                                                        <td className="w-[25%] text-capitalize text-right">{formatMoney(parseInt(price || 0) * parseInt(qty || 0))}</td>
                                                     </tr>
                                                 )}
                                             </tbody>
                                         </table>
 
 
-                                        <div className="grid gap-1 pt-6">
+                                        <div className="grid gap-1 pt-3">
                                             <div className="flex justify-between items-center">
                                                 <span className="text-[.625rem]">Discount:</span>
                                                 <div className="text-black text-center font-bold">
@@ -355,12 +355,12 @@ const Receipt = () => {
 
                                     </div>}
 
-                                    <div className="py-3">
+                                    <div className="pt-3">
                                         {receipt.id && <QRCode className="mx-auto" size={50} value={receipt.id} />}
                                         <h1 className="pt-3 font-bold text-app-main text-center">{receipt.id && receipt.id}</h1>
                                     </div>
 
-                                    <p className="text-center text-gray-400 pt-5 w-full">
+                                    <p className="text-center text-gray-400 pt-3 w-full">
                                         Please Note: No refund of money after payments.<br />
                                         We sincerely appreciate your patronage.
                                     </p>
