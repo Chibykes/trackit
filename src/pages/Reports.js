@@ -160,7 +160,7 @@ const Reports = () => {
                                 Top Sales
                             </h1>
 
-                            {report?.sales?.map(({_id, customer_name, amount}) => 
+                            {report?.sales?.slice(0,5)?.map(({_id, customer_name, amount}) => 
                                 <div className="flex justify-between" key={_id}>
                                     <span className="text-sm capitalize">{customer_name}</span>
                                     <span className="text-sm font-bold">&#8358;{formatMoney(amount || 0)}</span>
@@ -176,7 +176,7 @@ const Reports = () => {
                             <h1 className="text-sm rounded inline font-bold py-3 text-center text-app-main">
                                 Top Debtors
                             </h1>
-                            {report?.debts?.map(({_id, customer_name, balance}) => 
+                            {report?.debts?.slice(0,5)?.map(({_id, customer_name, balance}) => 
                                 <div className="flex justify-between" key={_id}>
                                     <span className="text-sm capitalize">{customer_name}</span>
                                     <span className="text-sm font-bold">&#8358;{formatMoney(balance || 0)}</span>
