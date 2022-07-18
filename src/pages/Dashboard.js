@@ -223,7 +223,19 @@ const Dashboard = (props) => {
                                 </div>
                             </Link>}
                         
-
+                            <Link to="/reports" className="flex justify-start items-center w-1/2 my-2 py-2
+                                hover:bg-gray-50 rounded-lg
+                            ">
+                                <AiFillPieChart className="text-app-main text-xl"/>
+                                <div className="px-3 space-y-1">
+                                    <p className="text-left text-sm font-bold">
+                                        Reports
+                                    </p>
+                                    <p className="text-left text-xs text-gray-400">
+                                        Check reports
+                                    </p>
+                                </div>
+                            </Link>
                         
                             <Link to="/scan" className="flex justify-start items-center w-1/2 my-2 py-2
                                 hover:bg-gray-50 rounded-lg

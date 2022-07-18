@@ -25,12 +25,12 @@ const Sidebar = ({ showSidebar, setShowSidebar }) => {
                 ${showSidebar ? 'lg:w-2/6 w-full left-0' : 'lg:w-0 lg:opacity-0 -left-full'}
             `} style={{ transition: 'width .5s, left .5s' }}>
                 <div className="pb-5 h-1/4 lg:h-1/5 relative grid place-content-center">
-                    <div className="inline-block relative"> 
-                        <img src={user?.img || staffImg} alt="" className="rounded-full mx-auto w-20 h-20 border-4 border-white shadow-lg"/>
+                    <Link to="/profile" className="cursor-pointer inline-block relative"> 
+                        <img src={user?.img || staffImg} alt="" className="rounded-full mx-auto w-20 h-20 border-4 object-cover border-white shadow-lg"/>
                         <div className="bg-white w-5 h-5 p-2 grid place-content-center text-sm text-app-main rounded-full mx-auto absolute top-0" style={{ left: '60%' }}>
                             <BiPencil />
                         </div>
-                    </div>
+                    </Link>
                     <p className="font-bold text-center pt-2" style={{textTransform: 'capitalize'}}>{user && user.username}</p>
                     <p className="font-bold text-center text-xs text-app-main"><span className="text-black">ID: &nbsp;</span>{user && user.id}</p>
                     <FaTimes className="absolute top-1 right-5 lg:hidden" onClick={()=>setShowSidebar(!showSidebar)} />

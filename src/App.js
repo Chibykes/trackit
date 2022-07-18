@@ -17,6 +17,8 @@ import ResolveDebts from './pages/ResolveDebts';
 import Debts from './pages/Debts';
 import SingleTransaction from './pages/SingleTransaction';
 import Edit from './pages/Edit';
+import Profile from './pages/Profile';
+import Reports from './pages/Reports';
 // import Splash from './component/Splash';
 
 function App() {
@@ -36,6 +38,8 @@ function App() {
           <Route path="/new-staff" element={<NewStaff />} />
           <Route path="/staffs" element={<Staffs />} />
           <Route path="/scan" element={<Scan />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/reports" element={<Reports />} />
           <Route path="/receipt/:id" element={<Receipt />} />
           <Route path="/logout" element={<Logout />} />
           <Route exact path="*" element={<Error />} />
