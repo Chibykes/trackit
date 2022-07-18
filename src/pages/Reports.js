@@ -20,6 +20,11 @@ const Reports = () => {
     const [showSidebar, setShowSidebar] = useState(false);
     const [date, setDate] = useState(1);
     const [report, setReport] = useState({ });
+    const [totalAmount, setTotalAmount] = useState({
+        sales: 0,
+        expenses: 0,
+        debts: 0
+    })
 
     const data = {
         labels: ['Sales', 'Expenses', 'Debts'],
@@ -27,9 +32,9 @@ const Reports = () => {
           {
             label: 'Transactions',
             data: [
-                report?.sales?.reduce((acc,cum) => acc += cum.amount, 0) || 0,
-                report?.expenses?.reduce((acc,cum) => acc += cum.amount, 0) || 0,
-                report?.debts?.reduce((acc,cum) => acc += cum.amount, 0) || 0,
+                totalAmount.sales || 0,
+                totalAmount.expenses || 0,
+                totalAmount.debts || 0,
             ],
             backgroundColor: [
                 '#30b565',
@@ -61,6 +66,11 @@ const Reports = () => {
             }
             
             setReport(data);
+            setTotalAmount({
+                sales: data?.sales?.reduce((acc,cum) => acc += cum.amount, 0) || 0,
+                expenses: data?.expenses?.reduce((acc,cum) => acc += cum.amount, 0) || 0,
+                debts: data?.debts?.reduce((acc,cum) => acc += cum.balance, 0) || 0,
+            });
         })
         .catch(err => {
             setLoadSplash(false);
@@ -108,12 +118,12 @@ const Reports = () => {
                     <div className="flex justify-between items-center">
                         <div className="px-5">
                             <span className="text-sm">Total { report?.sales?.length } Sales</span>
-                            <p className='text-2xl font-bold'>&#8358;{ formatMoney(report?.sales?.reduce((acc,cum) => acc += cum.amount, 0) || 0) }</p>
+                            <p className='text-2xl font-bold'>&#8358;{ formatMoney(totalAmount.sales) }</p>
                         </div>
 
                         <div className="px-5">
                             <span className="text-sm">Total { report?.expenses?.length } Expenses</span>
-                            <p className='text-2xl font-bold'>&#8358;{ formatMoney(report?.expenses?.reduce((acc,cum) => acc += cum.amount, 0) || 0) }</p>
+                            <p className='text-2xl font-bold'>&#8358;{ formatMoney(totalAmount.expenses) }</p>
                         </div>
                     </div>
 
@@ -130,24 +140,39 @@ const Reports = () => {
 
                             <div className="flex justify-between">
                                 <span className="text-sm">Total Sales</span>
-                                <span className="text-sm font-bold">&#8358;{formatMoney(report?.sales?.reduce((acc,cum) => acc += cum.amount, 0)) || 0}</span>
+                                <span className="text-sm font-bold">&#8358;{formatMoney(totalAmount.sales)}</span>
                             </div>
                             
                             <div className="flex justify-between">
                                 <span className="text-sm">Total Expenses</span>
-                                <span className="text-sm font-bold">&#8358;{formatMoney(report?.expenses?.reduce((acc,cum) => acc += cum.amount, 0)) || 0}</span>
+                                <span className="text-sm font-bold">&#8358;{formatMoney(totalAmount.expenses)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-sm">Total Debt</span>
-                                <span className="text-sm font-bold">&#8358;{formatMoney(report?.debts?.reduce((acc,cum) => acc += cum.balance, 0)) || 0}</span>
+                                <span className="text-sm font-bold">&#8358;{formatMoney(totalAmount.debts)}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-sm font-bold">Net Profit</span>
-                                <span className="text-sm font-bold text-app-main">&#8358;{formatMoney(
-                                    (report?.sales?.reduce((acc,cum) => acc += cum.amount, 0) || 0) - 
-                                    (report?.expenses?.reduce((acc,cum) => acc += cum.amount, 0) || 0) - 
-                                    (report?.debts?.reduce((acc,cum) => acc += cum.balance, 0) || 0)
-                                )}</span>
+                                    {((totalAmount.sales) - (totalAmount.expenses) - (totalAmount.debts)) < 0 ? 
+                                        <>
+                                            <span className="text-sm font-bold">Net Loss</span>
+                                            <span className="text-sm font-bold text-red-main">
+                                                - &#8358;{formatMoney(
+                                                Math.abs((totalAmount.sales) - 
+                                                (totalAmount.expenses) - 
+                                                (totalAmount.debts)))}
+                                            </span>
+                                        </>
+                                        :
+                                        <>
+                                            <span className="text-sm font-bold">Net Profit</span>
+                                            <span className="text-sm font-bold text-app-main">
+                                                + &#8358;{formatMoney(
+                                                (totalAmount.sales) - 
+                                                (totalAmount.expenses) - 
+                                                (totalAmount.debts))}
+                                            </span>
+                                        </>
+                                    }
                             </div>
 
                         </div>
