@@ -155,7 +155,7 @@ const Reports = () => {
                                     {((totalAmount.sales) - (totalAmount.expenses) - (totalAmount.debts)) < 0 ? 
                                         <>
                                             <span className="text-sm font-bold">Net Loss</span>
-                                            <span className="text-sm font-bold text-red-400">
+                                            <span className="text-sm font-bold text-red-400 text">
                                                 - &#8358;{formatMoney(
                                                 Math.abs((totalAmount.sales) - 
                                                 (totalAmount.expenses) - 
