@@ -189,7 +189,7 @@ const Reports = () => {
                     <div className="">
                         <p className="w-5/6 mx-auto p-4 text-center text-gray-400 flex justify-center items-center gap-2">
                             <span className="w-12 h-[1px] bg-slate-300"></span>
-                            <span className="font-bold text-sm">End of Report</span>
+                            <span className="font-bold text-xs">End of Report</span>
                             <span className="w-12 h-[1px] bg-slate-300"></span>
                         </p>
                     </div>
