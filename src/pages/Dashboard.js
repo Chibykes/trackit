@@ -5,7 +5,7 @@ import { GiReceiveMoney, GiPayMoney } from 'react-icons/gi';
 import { HiMenuAlt1, HiUserGroup } from 'react-icons/hi';
 import { BsReceipt } from 'react-icons/bs';
 import { FaTimes } from 'react-icons/fa';
-import { AiOutlineFileSearch } from 'react-icons/ai';
+import { AiOutlineFileSearch, AiFillPieChart } from 'react-icons/ai';
 
 import Sidebar from '../component/Sidebar';
 import Splash from '../component/Splash';
