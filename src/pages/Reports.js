@@ -142,7 +142,7 @@ const Reports = () => {
                                 <span className="text-sm font-bold">&#8358;{formatMoney(report?.debts?.reduce((acc,cum) => acc += cum.balance, 0)) || 0}</span>
                             </div>
                             <div className="flex justify-between">
-                                <span className="text-sm font-bold">Net Proft</span>
+                                <span className="text-sm font-bold">Net Profit</span>
                                 <span className="text-sm font-bold text-app-main">&#8358;{formatMoney(
                                     (report?.sales?.reduce((acc,cum) => acc += cum.amount, 0) || 0) - 
                                     (report?.expenses?.reduce((acc,cum) => acc += cum.amount, 0) || 0) - 
