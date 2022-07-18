@@ -163,7 +163,7 @@ const Reports = () => {
                             {report?.sales?.slice(0,5)?.map(({_id, customer_name, amount}) => 
                                 <div className="flex justify-between" key={_id}>
                                     <span className="text-sm capitalize">{customer_name}</span>
-                                    <span className="text-sm font-bold">&#8358;{formatMoney(amount || 0)}</span>
+                                    <span className="text-sm text-green-400 font-bold">+ &#8358;{formatMoney(amount || 0)}</span>
                                 </div>
                             )}
                             
@@ -179,7 +179,7 @@ const Reports = () => {
                             {report?.debts?.slice(0,5)?.map(({_id, customer_name, balance}) => 
                                 <div className="flex justify-between" key={_id}>
                                     <span className="text-sm capitalize">{customer_name}</span>
-                                    <span className="text-sm font-bold">&#8358;{formatMoney(balance || 0)}</span>
+                                    <span className="text-sm text-red-400 font-bold">- &#8358;{formatMoney(balance || 0)}</span>
                                 </div>
                             )}
                             
