@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect, useContext} from 'react';
 import {FaEye, FaEyeSlash} from 'react-icons/fa';
-import vgranite from '../static/vgranite.png';
+import trackit from '../static/trackit.png';
 import Splash from '../component/Splash';
 import { AppContext } from '../context/AppContext';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -65,12 +65,12 @@ const Login = (props) => {
         {loadSplash && <Splash/>}
         <div className="grid place-content-center h-screen space-y-6">
 
-            <img src={vgranite}
+            <img src={trackit}
                 alt="Vegis Logo"
                 className="w-16 h-16 mx-auto"/>
 
                 <p className="text-lg font-bold uppercase text-center">
-                    Victory Granite
+                    Trackit
                 </p>
 
             <form className="mx-auto space-y-3"

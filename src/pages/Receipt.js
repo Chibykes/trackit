@@ -8,7 +8,7 @@ import QRCode from "react-qr-code";
 
 import Splash from '../component/Splash';
 import Sidebar from '../component/Sidebar';
-import vgranite from "../static/vgranite.png";
+import trackit from "../static/trackit.png";
 import formatDate from "../utils/formatDate";
 import formatMoney from "../utils/formatMoney";
 import { AppContext } from '../context/AppContext';
@@ -99,7 +99,7 @@ const Receipt = () => {
 
                                 <div className="py-3 flex justify-between items-center">
                                     <div className="">
-                                        <img src={vgranite} alt="" className="w-14 h-14"/>
+                                        <img src={trackit} alt="" className="w-14 h-14"/>
                                         <p className="text-lg font-bold uppercase">
                                             Victory <br /> Granite
                                         </p>
@@ -234,7 +234,7 @@ const Receipt = () => {
                                             <IoPrint className="mr-3 text-sm text-app-main" />
                                             Print
                                         </button>
-                                        {receipt.customer_phone && <a target="_blank" rel="noreferrer" href={`https://api.whatsapp.com/send/?phone=${receipt.customer_phone.replace(/^0/, '234')}&text=Hi, Here is your receipt from Victory Granite&app_absent=0`} type="" className="font-bold text-white bg-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto">
+                                        {receipt.customer_phone && <a target="_blank" rel="noreferrer" href={`https://api.whatsapp.com/send/?phone=${receipt.customer_phone.replace(/^0/, '234')}&text=Hi, Here is your receipt from Trackit&app_absent=0`} type="" className="font-bold text-white bg-app-main p-3 shadow-md w-1/3 flex justify-center items-center rounded-md mx-auto">
                                             <IoIosSend className="mr-3 text-sm text-white" />
                                             Share
                                         </a>}
@@ -261,7 +261,7 @@ const Receipt = () => {
                                 <div className="">
                                     <div className="">
                                         <p className="text-lg text-center font-bold uppercase">
-                                            Victory Granite
+                                            Trackit
                                         </p>
                                         <p className="text-center">
                                             Shop XX Timer Market Ikot Ekpene Road Umuahia

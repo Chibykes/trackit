@@ -1,12 +1,7 @@
 {
-  "short_name": "Victory Granite",
-  "name": "Victory Granite",
+  "short_name": "Trackit",
+  "name": "Trackit",
   "icons": [
-    {
-      "src": "logo64.png",
-      "sizes": "64x64",
-      "type": "image/png"
-    },
     {
       "src": "logo192.png",
       "type": "image/png",
